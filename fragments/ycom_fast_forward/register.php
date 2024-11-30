@@ -77,7 +77,15 @@ $description = $this->getVar('description', '');
             /* Activation-Key erstellen und versenden */
             $yform->setValueField('generate_key', ['activation_key', '{{ycom_user_activation_key}}', '0', '0']);
             $yform->setValidateField('unique', ['activation_key', '{{ycom_user_this_activation_key_exists_already}}', 'rex_ycom_user', '0']);
-            $yform->setActionField('tpl2email', ['ycom_access_request_de', 'email', 'ycom_access_request_email_subject', 'ycom_access_request_email_body', '0', '0', '0']);
+
+            
+            // Wenn Mailer-Profile installiert ist und ein abweichendes Profil definiert ist, dann dieses verwenden
+            $mailer_profile_id = YComFastForward::getConfig('mailer_profile_id');
+            if (rex_addon::get('mailer_profile')->isAvailable() && $mailer_profile_id > 0) {
+                $yform->setActionField('mailer_profile', [$mailer_profile_id]);
+            }
+
+            $yform->setActionField('tpl2email', ['ycom_fast_forward.access_request', 'email', 'ycom_access_request_email_subject', 'ycom_access_request_email_body', '0', '0', '0']);
             /* In Datenbank erstellen */
             $yform->setActionField('db', ['rex_ycom_user']);
 
