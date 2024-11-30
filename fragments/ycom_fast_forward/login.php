@@ -24,7 +24,7 @@ $cta = $this->getVar('cta', '');
 					<?= $text ?>
 				</div>
 			<?php } ?>
-			<?php if ($cta) { ?>
+			<?php if ($cta !== '') { ?>
 					<div class="text-cta col-md-12 my-2">
 						<?= $cta ?>
 					</div>

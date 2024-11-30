@@ -26,7 +26,7 @@ $form->addFieldset('translate:ycom_fast_forward.terms_of_use');
 $editor = YComFastForward::getConfig('editor');
 
 $field = $form->addTextAreaField('terms_of_use', null, ['class' => 'form-control']);
-if (strval(rex_config::get('ycom_fast_forward', 'editor')) !== '') { // @phpstan-ignore-line
+if (strval(rex_config::get('ycom_fast_forward', 'editor')) !== '') {
     $field->setAttribute('class', '###ycom_fast_forward-settings-editor###');
 }
 $field->setLabel('translate:ycom_fast_forward.config.terms_of_use');
