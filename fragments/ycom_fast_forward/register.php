@@ -4,16 +4,19 @@
 
 use Alexplusde\YComFastForward\YComFastForward;
 
+$title = $this->getVar('title', '');
+$description = $this->getVar('description', '');
+
 ?>
 <section class="container">
     <div class="row my-3">
         <div class="col-md-12">
-            <h1>Registrierung</h1>
+            <h1><?= $title ?></h1>
         </div>
     </div>
     <div class="row my-3">
         <div class="col-12 col-md-6">
-            <p>Bitte füllen Sie das Formular aus, um sich zu registrieren.</p>
+            <p><?= $description ?></p>
         </div>
         <div class="col-12 col-md-6">
             <?php
@@ -27,7 +30,12 @@ use Alexplusde\YComFastForward\YComFastForward;
             /* Status aus rex_config laden */
             $status = YComFastForward::getConfig('ycom_user_default_status');
             $yform->setValueField('hidden', ['status', $status]);
-            $yform->setValueField('hidden', ['ycom_groups', '2']);
+
+            /* YCom-Gruppe aus rex_config laden */
+            $default_ycom_group_id = YComFastForward::getConfig('default_ycom_group_id');
+            if($default_ycom_group_id > 0) {
+                $yform->setValueField('hidden', ['ycom_group_id', $default_ycom_group_id]);
+            }
 
             /* Vorname und Nachname */
             $yform->setValidateField('empty', ['firstname', '{{ycom_user_please_enter_firstname}}']);

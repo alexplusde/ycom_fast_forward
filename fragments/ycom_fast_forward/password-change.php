@@ -2,6 +2,8 @@
 
 /** @var rex_fragment $this */
 
+use Alexplusde\YComFastForward\YComFastForward;
+
 ?>
 <section class="container">
     <div class="row">
@@ -25,7 +27,14 @@
             $yform->setObjectparams('form_showformafterupdate', 0);
             $yform->setObjectparams('real_field_names', true);
             $yform->setValueField('password', ['old_password', '{{ycom_user_old_password}}']);
-            $yform->setValueField('ycom_auth_password', ['password', '{{ycom_user_password}}', '{"length":{"min":16},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":1},"symbol":{"min":0}}', '{{ycom_user_password_validation_message}}']);
+
+            /* Passwort-Regeln aus Einstellungen übernehmen */
+            $password_rule = YComFastForward::getConfig('password_rules');
+            if($password_rule !== "") {
+                $yform->setValueField('ycom_auth_password', ['password', '{{ycom_user_password}}', $password_rule, '{{ycom_user_password_validation_message}}']);
+            } else {
+                $yform->setValueField('ycom_auth_password', ['password', '{{ycom_user_password}}', '{"length":{"min":16},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":1},"symbol":{"min":0}}', '{{ycom_user_password_validation_message}}']);
+            }
             $yform->setValueField('password', ['password_2', '{{ycom_user_password_repeat}}']);
 
             $yform->setValidateField('empty', ['old_password', '{{ycom_user_old_password_required}}']);

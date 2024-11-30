@@ -14,13 +14,20 @@ ycom_fast_forward.settings.title = Einstellungen
 ycom_fast_forward.config.ycom_user_default_status = Status
 ycom_fast_forward.config.ycom_user_default_status.notice = Standard-Status für neue YCom-Benutzer
 
+ycom_fast_forward.config.default_ycom_group_id = YCom-Gruppe
+ycom_fast_forward.config.default_ycom_group_id.notice = Standard-Gruppe für neue YCom-Benutzer
+ycom_fast_forward.config.default_ycom_group_id.none = Keine Gruppe vorhanden
+
+ycom_fast_forward.config.password_rules = Passwortregeln
+ycom_fast_forward.config.password_rules.notice = Hier können Sie die Passwortregeln für alle Formulare (Registierung, Passwort vergessen, Passwort ändern) hinterlegt werden. Empfohlen: <code>{"length":{"min":12},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":1},"symbol":{"min":0}}</code>
+
 ycom_fast_forward.config.terms_of_use_required = Nutzungsbedingungen erforderlich
 ycom_fast_forward.config.terms_of_use_required.notice = Wenn aktiviert, müssen Benutzer die Nutzungsbedingungen akzeptieren, um sich zu registrieren.
 ycom_fast_forward.config.terms_of_use_required.yes = Ja
 ycom_fast_forward.config.terms_of_use_required.no = Nein
-
 ycom_fast_forward.config.terms_of_use = Nutzungsbedingungen
 ycom_fast_forward.config.terms_of_use.notice = Hier können Sie die Nutzungsbedingungen für die Fast Forward Funktion festlegen.
+
 ycom_fast_forward.config.yform_theme = YForm Template
 ycom_fast_forward.config.yform_theme.notice = z.B. <code>bootstrap</code> oder <code>bootstrap5,bootestrap</code>
 ycom_fast_forward.config.editor = Editor

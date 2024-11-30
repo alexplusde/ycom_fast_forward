@@ -17,6 +17,8 @@ default_config:
     mailer_profile_id: 0
     ycom_user_default_status: 0
     terms_of_use_required: 0
+    default_ycom_group_id : 0
+    password_rules: '{"length":{"min":10},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":1},"symbol":{"min":0}}'
 
 page:
     title: 'translate:ycom_fast_forward.title'

@@ -50,6 +50,32 @@ $select->setSize(1);
 $select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.no'), '0');
 $select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.yes'), '1');
 
+/* Auswahl der passenden YCom-Gruppe bei Registrierung */
+
+$field = $form->addSelectField('default_ycom_group_id', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.default_ycom_group_id'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.default_ycom_group_id.notice'));
+
+$select = $field->getSelect();
+$select->setSize(1);
+$select->addOption(rex_i18n::msg('ycom_fast_forward.config.default_ycom_group_id.none'), '0');
+$select->addSqlOptions('SELECT id, name FROM ' . rex::getTable('ycom_group') . ' ORDER BY name ASC');
+
+/* Passwortregeln */
+$field = $form->addTextField('password_rules', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.password_rules'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.password_rules.notice'));
+
+/* Passwortregeln mit rex_form validieren */
+$field->getValidator()->add('custom', rex_i18n::msg('ycom_fast_forward.config.password_rules.validate'), function ($value) {
+    /* Überprüfen, ob JSON-Format */
+    if (json_decode($value) === null) {
+        return false;
+    } 
+    return true;
+});
+
+
 /* Textfeld zur Eingabe der Nutzungsbedingungen */
 
 $field = $form->addTextAreaField('terms_of_use', null, ['class' => 'form-control']);
