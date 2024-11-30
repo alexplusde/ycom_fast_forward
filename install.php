@@ -50,3 +50,9 @@ Benötigte Kategorien / Artikel für YCom Fast Forward:
 * * Nutzungsbedingungen akzeptieren
 * Logout
 */
+
+
+// YCom-Nutzer anlegen
+if(rex_ycom_user::query()->where('email', 'mail@example.org')->findOne() === null) {
+    rex_ycom_user::createUserByEmail(['email' => 'mail@example.org']);
+}
