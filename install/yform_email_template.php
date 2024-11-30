@@ -1,6 +1,6 @@
 <?php
 
-/* access_request */
+/* ycom_fast_forward.access_request */
 
 // Überprüfen, ob der Datensatz mit dem Namen bereits existiert
 if (rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTable('yform_email_template') . ' WHERE name = "access_request"')->getRows() > 0) {
