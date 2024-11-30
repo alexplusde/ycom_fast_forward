@@ -190,3 +190,6 @@ if (rex_ycom_user::query()->where('email', 'mail@example.org')->findOne() === nu
         'email' => 'mail@example.org'
     ]);
 }
+
+// E-Mail-Templates anlegen
+include_once(__DIR__ . '/install/yform_email_template.php');
