@@ -12,4 +12,5 @@ if (rex::isBackend()) {
             $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
         });
     }
+
 }
