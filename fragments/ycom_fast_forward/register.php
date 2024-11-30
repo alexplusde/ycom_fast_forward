@@ -56,8 +56,15 @@ $description = $this->getVar('description', '');
             $yform->setActionField('copy_value', ['email', 'login']);
 
             /* Passwort */
-            $yform->setValueField('ycom_auth_password', ['password', '{{ycom_user_password}}', '{"length":{"min":12},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":0},"symbol":{"min":0}}', '{{ycom_user_validate_password_policy_rules_error}}', '0']);
-
+            
+            /* Passwort-Regeln aus Einstellungen übernehmen */
+            $password_rule = YComFastForward::getConfig('password_rules');
+            if($password_rule !== "") {
+                $yform->setValueField('ycom_auth_password', ['password', '{{ycom_user_password}}', $password_rule, '{{ycom_user_password_validation_message}}']);
+            } else {
+                $yform->setValueField('ycom_auth_password', ['password', '{{ycom_user_password}}', '{"length":{"min":16},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":1},"symbol":{"min":0}}', '{{ycom_user_password_validation_message}}']);
+            }
+ 
             $yform->setValueField('text', ['password_confirm', '{{ycom_user_password_confirm}}', '', 'no_db', '{"required":"required"}']);
             $yform->setValidateField('empty', ['password', '{{ycom_user_please_enter_password}}', '', null, '{"required":"required"}']);
             $yform->setValidateField('empty', ['password_confirm', '{{ycom_user_please_enter_password}}', '', 'no_db']);
