@@ -1,0 +1,28 @@
+package: ycom_fast_forward
+version: 0.0.1-dev-2024-11-30
+author: Alexander Walther
+supportpage: https://github.com/alexplusde/ycom_fast_forward
+
+# Benötigt `ycom`
+requires:
+    php: '>=8.3'
+    packages:
+        ycom: '>=4.3.0'
+    redaxo: '^5.18.0'
+
+default_config:
+    objparam_template: 'bootstrap5,bootstrap'
+    first_install: '0000-00-00 00:00:00'
+
+page:
+    title: 'translate:ycom_fast_forward.title'
+    perm: admin[]
+    block: ycom
+    icon: rex-icon fa-fast-forward
+    subpages:
+        docs:
+            title: 'translate:ycom_fast_forward.docs.title'
+            perm: admin[]
+            pjax: false
+            itemClass: pull-right
+            icon: rex-icon fa-info-circle
