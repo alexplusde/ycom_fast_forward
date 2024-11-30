@@ -38,6 +38,26 @@ $field = $form->addTextField('editor', null, ['class' => 'form-control']);
 $field->setLabel(rex_i18n::msg('ycom_fast_forward.config.editor'));
 $field->setNotice(rex_i18n::msg('ycom_fast_forward.config.editor.notice'));
 
+
+// Fieldset für Addon Mailer-Profile hinzufügen
+$form->addFieldset(rex_i18n::msg('ycom_fast_forward.config.mailer_profiles'));
+
+// Auswahl des gewünschten Mailer-Profiles, wenn das Addon installiert ist
+$field = $form->addSelectField('mailer_profile_id', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.mailer_profile'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.mailer_profile.notice'));
+
+$select = $field->getSelect();
+$select->setSize(1);
+if (rex_addon::get('mailer_profile')->isAvailable()) {
+    $options = rex_sql::factory()->setQuery('SELECT id, `name` FROM ' . rex::getTable('mailer_profile') . ' ORDER BY name ASC');
+    foreach ($options as $option) {
+        $select->addOption($option->getValue('name'), $option->getValue('id'));
+    }
+} else {
+    $select->addOption(rex_i18n::msg('ycom_fast_forward.config.mailer_profile.error'), '0');
+}
+
 // Formular ausgeben mit Core Section Fragment */
 
 $fragment = new rex_fragment();

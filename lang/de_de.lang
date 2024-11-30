@@ -18,6 +18,10 @@ ycom_fast_forward.config.yform_theme.notice = z.B. <code>bootstrap</code> oder <
 ycom_fast_forward.config.editor = Editor
 ycom_fast_forward.config.editor.notice = z.B. <code>class="form-control redactor-editor--default"</code>
 
+ycom_fast_forward.config.mailer_profile = Mailer-Profile
+ycom_fast_forward.config.mailer_profile.notice = Wenn das Addon Mailer Profile installiert ist, können Sie hier ein von PHPMailer abweichendes Profil auswählen.
+ycom_fast_forward.config.mailer_profile.error = Das Addon Mailer Profile ist nicht installiert.
+
 # Table Manager
 
 ycom_lastname = Nachname

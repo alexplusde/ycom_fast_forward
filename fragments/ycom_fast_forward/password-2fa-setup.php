@@ -19,7 +19,7 @@
             $yform = new rex_yform();
             $yform->setObjectparams('form_name', 'ycom_2fa_setup');
             $yform->setObjectparams('form_action', rex_getUrl('REX_ARTICLE_ID'));
-            $yform->setObjectparams('form_ytemplate', 'bootstrap');
+            $yform->setObjectparams('form_ytemplate', 'bootstrap5,bootstrap');
             $yform->setObjectparams('form_showformafterupdate', 0);
             $yform->setObjectparams('real_field_names', true);
 
