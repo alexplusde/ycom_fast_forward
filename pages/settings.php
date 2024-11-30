@@ -40,6 +40,18 @@ $form->addFieldset(rex_i18n::msg('ycom_fast_forward.config.terms_of_use'));
 
 $editor = YComFastForward::getConfig('editor');
 
+/* Auswahl, ob Nutzungsbedingungen zugestimmt werden muss oder nicht */
+$field = $form->addSelectField('terms_of_use_required', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.notice'));
+
+$select = $field->getSelect();
+$select->setSize(1);
+$select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.no'), '0');
+$select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.yes'), '1');
+
+/* Textfeld zur Eingabe der Nutzungsbedingungen */
+
 $field = $form->addTextAreaField('terms_of_use', null, ['class' => 'form-control']);
 if (strval(rex_config::get('ycom_fast_forward', 'editor')) !== '') {
     $field->setAttribute('class', '###ycom_fast_forward-settings-editor###');

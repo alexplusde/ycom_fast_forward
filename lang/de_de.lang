@@ -14,6 +14,11 @@ ycom_fast_forward.settings.title = Einstellungen
 ycom_fast_forward.config.ycom_user_default_status = Status
 ycom_fast_forward.config.ycom_user_default_status.notice = Standard-Status für neue YCom-Benutzer
 
+ycom_fast_forward.config.terms_of_use_required = Nutzungsbedingungen erforderlich
+ycom_fast_forward.config.terms_of_use_required.notice = Wenn aktiviert, müssen Benutzer die Nutzungsbedingungen akzeptieren, um sich zu registrieren.
+ycom_fast_forward.config.terms_of_use_required.yes = Ja
+ycom_fast_forward.config.terms_of_use_required.no = Nein
+
 ycom_fast_forward.config.terms_of_use = Nutzungsbedingungen
 ycom_fast_forward.config.terms_of_use.notice = Hier können Sie die Nutzungsbedingungen für die Fast Forward Funktion festlegen.
 ycom_fast_forward.config.yform_theme = YForm Template
