@@ -11,7 +11,8 @@ requires:
     redaxo: '^5.18.0'
 
 default_config:
-    objparam_template: 'bootstrap5,bootstrap'
+    yform_theme: 'bootstrap5,bootstrap'
+    editor: 'class="form-control redactor-editor--default"'
     first_install: '0000-00-00 00:00:00'
 
 page:
