@@ -60,7 +60,7 @@ Benötigte Kategorien / Artikel für YCom Fast Forward:
 /* Extension-Points CAT_ADDED und ART_ADDED nutzen, um eben erstllte Kategorie zu finden und weitere Artikel / Slices anzulegen */
 
 rex_extension::register('CAT_ADDED', [YComFastForward::class, "CatAdded"]);
-// rex_extension::register('ART_ADDED', [YComFastForward::class, "ArtAdded"]);
+rex_extension::register('ART_ADDED', [YComFastForward::class, "ArtAdded"]);
 
 $module_id = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE `key` = "ycom_fast_forward"')->getValue('id');
 
@@ -77,6 +77,38 @@ rex_category_service::addCategory(0, [
     'status' => 1,
 ]);
 
+$category_login = rex_category::get(rex_addon::get('ycom_fast_forward')->getProperty('category_id_login'));
+
+if ($category_login !== null) {
+
+    // Passwort vergessen
+    rex_article_service::addArticle([
+        'name' => 'Passwort vergessen',
+        'category_id' => $category_login->getId(),
+        'priority' => 1,
+        'template_id' => 0,
+        'status' => 1,
+    ]);
+
+    // OTP-Verifizierung
+    rex_article_service::addArticle([
+        'category_id' => $category_login->getId(),
+        'name' => 'OTP-Verifizierung',
+        'priority' => 2,
+        'template_id' => 0,
+        'status' => 1,
+    ]);
+
+    // Registrierung
+    rex_article_service::addArticle([
+        'category_id' => $category_login->getId(),
+        'name' => 'Registrierung',
+        'priority' => 3,
+        'template_id' => 0,
+        'status' => 1,
+    ]);
+}
+
 // TODO: Attribut ycom_auth_type = `1` für eingeloggte Nutzer
 rex_category_service::addCategory(0, [
     'catname' => 'Mein Profil',
@@ -85,6 +117,37 @@ rex_category_service::addCategory(0, [
     'name' => 'Übersicht',
     'status' => 1,
 ]);
+
+$category_myprofile = rex_category::get(rex_addon::get('ycom_fast_forward')->getProperty('category_id_myprofile'));
+
+if ($category_myprofile !== null) {
+
+    // Nutzungsbedingungen
+    rex_article_service::addArticle([
+        'category_id' => $cat->getId(),
+        'name' => 'Nutzungsbedingungen akzeptieren',
+        'priority' => 1,
+        'template_id' => 0,
+        'status' => 1,
+    ]);
+    // Profil bearbeiten
+    rex_article_service::addArticle([
+        'category_id' => $cat->getId(),
+        'name' => 'Mein Profil',
+        'priority' => 2,
+        'template_id' => 0,
+        'status' => 1,
+    ]);
+
+    // Passwort ändern
+    rex_article_service::addArticle([
+        'category_id' => $cat->getId(),
+        'name' => 'Passwort ändern',
+        'priority' => 3,
+        'template_id' => 0,
+        'status' => 1,
+    ]);
+}
 
 // TODO: Attribut ycom_auth_type = `1` für eingeloggte Nutzer
 rex_category_service::addCategory(0, [

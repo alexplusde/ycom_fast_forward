@@ -53,63 +53,14 @@ class YComFastForward
     {
         $cat = \rex_category::get($ep->getParam('id'));
 
-        if($cat->getName() == 'Mein Profil') {
-
-            // Passwort vergessen
-            rex_article_service::addArticle([
-                'name' => 'Passwort vergessen',
-                'category_id' => $cat->getId(),
-                'priority' => 1,
-                'template_id' => 0,
-                'status' => 1,
-            ]);
-
-            // OTP-Verifizierung
-            rex_article_service::addArticle([
-                'category_id' => $cat->getId(),
-                'name' => 'OTP-Verifizierung',
-                'priority' => 2,
-                'template_id' => 0,
-                'status' => 1,
-            ]);
-
-            // Registrierung
-            rex_article_service::addArticle([
-                'category_id' => $cat->getId(),
-                'name' => 'Registrierung',
-                'priority' => 3,
-                'template_id' => 0,
-                'status' => 1,
-            ]);
+        if($cat->getName() == 'Login') {
+            // ID in Property merken
+            \rex_addon::get('ycom_fast_forward')->setProperty('category_id_login', $cat->getId());
         }
 
         if($cat->getName() == 'Mein Profil') {
-            // Nutzungsbedingungen
-            rex_article_service::addArticle([
-                'category_id' => $cat->getId(),
-                'name' => 'Nutzungsbedingungen akzeptieren',
-                'priority' => 1,
-                'template_id' => 0,
-                'status' => 1,
-            ]);
-            // Profil bearbeiten
-            rex_article_service::addArticle([
-                'category_id' => $cat->getId(),
-                'name' => 'Mein Profil',
-                'priority' => 2,
-                'template_id' => 0,
-                'status' => 1,
-            ]);
 
-            // Passwort ändern
-            rex_article_service::addArticle([
-                'category_id' => $cat->getId(),
-                'name' => 'Passwort ändern',
-                'priority' => 3,
-                'template_id' => 0,
-                'status' => 1,
-            ]);
-
+            \rex_addon::get('ycom_fast_forward')->setProperty('category_id_myprofile', $cat->getId());
         }
 
 
