@@ -8,33 +8,33 @@ $addon = rex_addon::get('ycom_fast_forward');
 // Wenn Modul mit key "ycom_fast_forward" nicht existiert, dann Modul installieren
 $module = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE `key` = "ycom_fast_forward"');
 
-if($module->getRows() === 0) {
+if ($module->getRows() === 0) {
 
     $input = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/input.php'));
     $output = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/output.php'));
 
     /* Modul anlegen */
     rex_sql::factory()
-    ->setTable(rex::getTablePrefix() . 'module')
-    ->setValue('name', 'translate:ycom_fast_forward.module.name')
-    ->setValue('input', $input)
-    ->setValue('output', $output)
-    ->setValue('createuser', 'ycom_fast_forward')
-    ->setValue('updateuser', 'ycom_fast_forward')
-    ->insert();
+        ->setTable(rex::getTablePrefix() . 'module')
+        ->setValue('name', 'translate:ycom_fast_forward.module.name')
+        ->setValue('input', $input)
+        ->setValue('output', $output)
+        ->setValue('createuser', 'ycom_fast_forward')
+        ->setValue('updateuser', 'ycom_fast_forward')
+        ->insert();
 } else {
     /* Modul aktualisieren */
     rex_sql::factory()
-    ->setTable(rex::getTablePrefix() . 'module')
-    ->setWhere('`key` = "ycom_fast_forward"')
-    ->setValue('input', $input)
-    ->setValue('output', $output)
-    ->setValue('updateuser', 'ycom_fast_forward')
-    ->update();
+        ->setTable(rex::getTablePrefix() . 'module')
+        ->setWhere('`key` = "ycom_fast_forward"')
+        ->setValue('input', $input)
+        ->setValue('output', $output)
+        ->setValue('updateuser', 'ycom_fast_forward')
+        ->update();
 }
 
 /* Falls erste Installation, dann Datum speichern */
-if(YComFastForward::getConfig('first_install') === '0000-00-00 00:00:00') {
+if (YComFastForward::getConfig('first_install') === '0000-00-00 00:00:00') {
     YComFastForward::setConfig('first_install', date('Y-m-d H:i:s'));
 } else {
     YComFastForward::setConfig('first_install', date('Y-m-d H:i:s'));
@@ -95,7 +95,35 @@ rex_category_service::addCategory(0, [
     'status' => 1,
 ]);
 
+// Prüfe, ob Feld `rex_ycom_user`.`lastname` existiert
+
+if (rex_yform_manager_table::get('rex_ycom_user')->getFields()['lastname'] === null) {
+    \rex_yform_manager_table_api::setTableField(
+        'rex_ycom_user',
+        [
+            'prio' => '11',
+            'type_id' => 'value',
+            'type_name' => 'text',
+            'db_type' => 'varchar(191)',
+            'list_hidden' => '0',
+            'search' => '1',
+            'name' => 'lastname',
+            'label' => 'translate:ycom_lastname',
+            'default' => '',
+            'createuser' => 'ycom_fast_forward',
+            'updateuser' => 'ycom_fast_forward',
+        ]
+    );
+}
+
+\rex_yform_manager_table_api::generateTableAndFields(rex_yform_manager_table::get('rex_ycom_user'));
+
 // YCom-Nutzer anlegen
-if(rex_ycom_user::query()->where('email', 'mail@example.org')->findOne() === null) {
-    rex_ycom_user::createUserByEmail(['email' => 'mail@example.org']);
+if (rex_ycom_user::query()->where('email', 'mail@example.org')->findOne() === null) {
+    rex_ycom_user::createUserByEmail([
+        'firstname' => 'Blue',
+        'lastname' => 'T-Rex',
+        'name' => 'Blue T-Rex',
+        'email' => 'mail@example.org'
+    ]);
 }
