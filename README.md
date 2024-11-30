@@ -19,6 +19,34 @@ Nach der Installation stehen folgende Optionen in den Einstellungen zur Verfügu
 1. Das Addon kommt mit passenden Formular-Fragmenten in PHP-Schreibweise.
 2. Eine zusätzliche Backend-Einstellungsseite ermöglicht bspw. das Hinzufügen von Nutzungsbedingungen.
 
+Die Struktur der Artikel sieht wie folgt aus:
+
+```plaintext
+Login
+  - Login
+  - Passwort vergessen
+Mein Profil
+    - Profil
+    - Passwort ändern
+    - 2FA
+    - Nutzungsbedingungen
+Logout
+```
+
+### Berechtigungen
+
+Kategorien und Artikeln werden die empfohlenen / Benötigten Berechtigungen zugewiesen:
+
+* Login: Für alle **nicht** eingeloggten Nutzer, egal welche Gruppe
+* Logout: Für alle eingeloggten Nutzer, egal welche Gruppe
+* OTP: Für alle eingeloggten Nutzer, egal welche Gruppe
+* Profile: Für alle eingeloggten Nutzer, egal welche Gruppe
+* Registrierung: Für alle **nicht** eingeloggten Nutzer
+* Passwort vergessen (Formular): Für alle **nicht** eingeloggten Nutzer
+* Passwort ändern: Für alle eingeloggten Nutzer, egal welche Gruppe
+* Nutzungsbedingungen: Für alle eingeloggten Nutzer, egal welche Gruppe
+* Gesperrter Artikel: Für alle eingeloggten Nutzer, egal welche Gruppe (wenn du eingeloggt bist, jedoch nicht die passenden Gruppenrechte hast)
+
 ## Einstellungen
 
 ### Theme
@@ -52,20 +80,6 @@ Kopiere dazu die Module von `src/addons/ycom_fast_forward/fragments/ycom_fast_fo
 ## E-Mail-Templates
 
 Das Addon enthält auch E-Mail-Templates, die für die Registrierung, das Zurücksetzen des Passworts und die 2FA verwendet werden.
-
-## Berechtigungen
-
-Das weist den Kategorien und Artikeln die empfohlenen Berechtigungen zu:
-
-* Login: Für alle **nicht** eingeloggten Nutzer, egal welche Gruppe
-* Logout: Für alle eingeloggten Nutzer, egal welche Gruppe
-* OTP: Für alle eingeloggten Nutzer, egal welche Gruppe
-* Profile: Für alle eingeloggten Nutzer, egal welche Gruppe
-* Registrierung: Für alle **nicht** eingeloggten Nutzer
-* Passwort vergessen (Formular): Für alle **nicht** eingeloggten Nutzer
-* Passwort ändern: Für alle eingeloggten Nutzer, egal welche Gruppe
-* Nutzungsbedingungen: Für alle eingeloggten Nutzer, egal welche Gruppe
-* Gesperrter Artikel: Für alle eingeloggten Nutzer, egal welche Gruppe (wenn du eingeloggt bist, jedoch nicht die passenden Gruppenrechte hast)
 
 ## Autor
 
