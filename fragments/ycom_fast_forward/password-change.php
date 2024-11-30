@@ -4,12 +4,16 @@
 
 use Alexplusde\YComFastForward\YComFastForward;
 
+$title = $this->getVar('title', '');
+$description = $this->getVar('description', '');
 ?>
 <section class="container">
     <div class="row">
+    <div class="col-md-12">
+            <h1><?= $title ?></h1>
+        </div>
         <div class="col-md-12">
-            <h1>Passwort ändern</h1>
-            <p>Bitte geben Sie Ihr altes Passwort und das neue Passwort ein. Das neue Passwort muss mindestens <strong>16 Zeichen lang</strong> sein, um aktuellen Sicherheitsbestimmungen zu entsprechen.</p>
+            <h1><?= $description ?></h1>
         </div>
     </div>
     <div class="row">

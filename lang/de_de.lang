@@ -5,8 +5,11 @@ ycom_fast_forward.docs.title = Dokumentation
 
 # Module
 
+ycom_fast_forward.module.title = Überschrift
+ycom_fast_forward.module.description = Beschreibung
+
 ycom_fast_forward.module.name = YCom Fast Forward
-translate:ycom_fast_forward.module.select.default = Bitte wählen Sie eine Option aus
+ycom_fast_forward.module.select.default = Bitte wählen Sie eine Option aus
 
 # Settings
 

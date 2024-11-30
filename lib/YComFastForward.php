@@ -18,7 +18,7 @@ class YComFastForward
 
         if (file_exists($fragment_path)) {
             $fragment->setVar('title', $title);
-            $fragment->setVar('description', $description);
+            $fragment->setVar('description', $description, false);
             return $fragment->parse('ycom_fast_forward' . \DIRECTORY_SEPARATOR . $file);
         }
     }

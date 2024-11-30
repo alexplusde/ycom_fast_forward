@@ -2,15 +2,20 @@
 
 /** @var rex_fragment $this */
 
+$title = $this->getVar('title', '');
+$description = $this->getVar('description', '');
+
 ?>
 <section class="container">
     <div class="row my-3">
         <div class="col-md-12">
-            <h1>Ihre Kontaktdaten</h1>
-            <p>Dies sind die Angaben zu Ihnen als Mitarbeitende. Um die Informationen zu Ihrer Kontaktstelle zu bearbeiten, wechseln Sie zu <a href="/">Meine Kontaktstelle</a></p>
+            <h1><?= $title ?></h1>
         </div>
     </div>
     <div class="row my-3">
+        <div class="col-12 col-md-6">
+            <?= $description ?>
+        </div>
         <div class="col-12 col-md-3">
             <?php
             echo $this->getSubfragment('sh_aktuell/sh_kontaktstelle/navigation.php');

@@ -4,17 +4,20 @@
 
 use Alexplusde\YComFastForward\YComFastForward;
 
+$title = $this->getVar('title', '');
+$description = $this->getVar('description', '');
+
 ?>
 <section class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Passwort zurücksetzen</h1>
-        </div>
+            <h1><?= $title ?></h1>
+    </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <p>Bitte geben Sie Ihre E-Mail-Adresse ein, um das Passwort zurückzusetzen.</p>
-        </div>
+            <?= $description ?>
+    </div>
         <div class="col-12 col-md-6">
             <?php
             $yform = new rex_yform();

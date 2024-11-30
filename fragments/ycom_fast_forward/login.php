@@ -3,14 +3,13 @@
 /** @var rex_fragment $this */
 
 $title = $this->getVar('title', '');
-$text = $this->getVar('text', '');
-$cta = $this->getVar('cta', '');
+$description = $this->getVar('description', '');
 
 ?>
 <section class="container">
     <div class="row my-3">
         <div class="col-md-12">
-        <?php if ('' !== $this->getVar('title')) { ?>
+        <?php if ('' !== $title) { ?>
 				<div class="text-headline text-title col-md-12 my-2">
 					<h1><?= $title ?></h1>
 				</div>
@@ -19,15 +18,10 @@ $cta = $this->getVar('cta', '');
     </div>
     <div class="row my-3">
         <div class="col-12 col-md-6">
-        <?php if ('' !== $text) { ?>
+        <?php if ('' !== $description) { ?>
 				<div class="text-content col-md-12 my-2">
-					<?= $text ?>
+					<?= $description ?>
 				</div>
-			<?php } ?>
-			<?php if ($cta !== '') { ?>
-					<div class="text-cta col-md-12 my-2">
-						<?= $cta ?>
-					</div>
 			<?php } ?>
         </div>
         <div class="col-12 col-md-6">
