@@ -9,6 +9,7 @@ use rex_path;
 
 class YComFastForward
 {
+    /** @api */
     public static function parse(string $file, string $title = '', string $description = '')
     {
         $fragment = new rex_fragment();
@@ -21,11 +22,13 @@ class YComFastForward
         }
     }
 
+    /** @api */
     public static function getConfig(string $key) :mixed
     {
         return rex_config::get('ycom_fast_forward', $key);
     }
 
+    /** @api */
     public static function setConfig(string $key, mixed $value) :bool
     {
         return rex_config::set('ycom_fast_forward', $key, $value);
@@ -44,19 +47,22 @@ class YComFastForward
     }
 
     /* Extension Point Funktionen */
-
+    /** @api */
     public static function CatAdded(rex_extension_point $ep) :void
     {
+        /** @var \rex_category $cat */
         $cat = $ep->getParam('category');
         $module_id = \rex_addon::get('ycom_fast_forward')->getProperty('module_id');
 
 
     }
 
+    /** @api */
     public static function artAdded(rex_extension_point $ep) :void
     {
+        /** @var \rex_article $art */
         $art = $ep->getParam('article');
-        $module_id = \rex_addon::get('ycom_fast_forward')->getProperty('module_id');
+        $module_id = (int) \rex_addon::get('ycom_fast_forward')->getProperty('module_id');
 
         if($art->getName() === 'Login') {
             // if (!rex_article_slice::getFirstSliceForArticle($id)) {

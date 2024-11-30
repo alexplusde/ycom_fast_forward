@@ -19,7 +19,7 @@
 
             $ycom_user = \rex_ycom_auth::getUser();
 
-            if($ycom_user) {
+            if($ycom_user !== null) {
                 $ycom_user_id = $ycom_user->getId();
                 rex_set_session('ycom_user_id', $ycom_user_id);
             } else {
