@@ -8,10 +8,10 @@ $addon = rex_addon::get('ycom_fast_forward');
 // Wenn Modul mit key "ycom_fast_forward" nicht existiert, dann Modul installieren
 $module = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE `key` = "ycom_fast_forward"');
 
-if ($module->getRows() === 0) {
+$input = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/input.php'));
+$output = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/output.php'));
 
-    $input = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/input.php'));
-    $output = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/output.php'));
+if ($module->getRows() === 0) {
 
     /* Modul anlegen */
     rex_sql::factory()
@@ -38,7 +38,7 @@ if (YComFastForward::getConfig('first_install') === '0000-00-00 00:00:00') {
     YComFastForward::setConfig('first_install', date('Y-m-d H:i:s'));
 } else {
     YComFastForward::setConfig('first_install', date('Y-m-d H:i:s'));
-    return;
+    // return;
 }
 
 /* Als nächstes die benötigten Artikel in REDAXO programmatisch anlegen und Slices (Blöcke) hinzufügen
@@ -60,7 +60,7 @@ Benötigte Kategorien / Artikel für YCom Fast Forward:
 /* Extension-Points CAT_ADDED und ART_ADDED nutzen, um eben erstllte Kategorie zu finden und weitere Artikel / Slices anzulegen */
 
 rex_extension::register('CAT_ADDED', [YComFastForward::class, "CatAdded"]);
-rex_extension::register('ART_ADDED', [YComFastForward::class, "ArtAdded"]);
+// rex_extension::register('ART_ADDED', [YComFastForward::class, "ArtAdded"]);
 
 $module_id = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE `key` = "ycom_fast_forward"')->getValue('id');
 

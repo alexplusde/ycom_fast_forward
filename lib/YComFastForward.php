@@ -2,6 +2,7 @@
 
 namespace Alexplusde\YComFastForward;
 
+use rex_article_service;
 use rex_fragment;
 use rex_config;
 use rex_extension_point;
@@ -18,125 +19,191 @@ class YComFastForward
         if (file_exists($fragment_path)) {
             $fragment->setVar('title', $title);
             $fragment->setVar('description', $description);
-            return $fragment->parse('ycom_fast_forward'. \DIRECTORY_SEPARATOR . $file);
+            return $fragment->parse('ycom_fast_forward' . \DIRECTORY_SEPARATOR . $file);
         }
     }
 
     /** @api */
-    public static function getConfig(string $key) :mixed
+    public static function getConfig(string $key): mixed
     {
         return rex_config::get('ycom_fast_forward', $key);
     }
 
     /** @api */
-    public static function setConfig(string $key, mixed $value) :bool
+    public static function setConfig(string $key, mixed $value): bool
     {
         return rex_config::set('ycom_fast_forward', $key, $value);
     }
 
     /** @api */
-    public static function getYComAuthConfig(string $key) :mixed
+    public static function getYComAuthConfig(string $key): mixed
     {
         return rex_config::get('ycom/auth', $key);
     }
 
     /** @api */
-    public static function setYComAuthConfig(string $key, mixed $value) :bool
+    public static function setYComAuthConfig(string $key, mixed $value): bool
     {
         return rex_config::set('ycom/auth', $key, $value);
     }
 
     /* Extension Point Funktionen */
     /** @api */
-    public static function CatAdded(rex_extension_point $ep) :void
+    public static function CatAdded(rex_extension_point $ep): void
     {
-        /** @var \rex_category $cat */
-        $cat = $ep->getParam('category');
-        $module_id = \rex_addon::get('ycom_fast_forward')->getProperty('module_id');
+        $cat = \rex_category::get($ep->getParam('id'));
+
+        if($cat->getName() == 'Mein Profil') {
+
+            // Passwort vergessen
+            rex_article_service::addArticle([
+                'name' => 'Passwort vergessen',
+                'category_id' => $cat->getId(),
+                'priority' => 1,
+                'template_id' => 0,
+                'status' => 1,
+            ]);
+
+            // OTP-Verifizierung
+            rex_article_service::addArticle([
+                'category_id' => $cat->getId(),
+                'name' => 'OTP-Verifizierung',
+                'priority' => 2,
+                'template_id' => 0,
+                'status' => 1,
+            ]);
+
+            // Registrierung
+            rex_article_service::addArticle([
+                'category_id' => $cat->getId(),
+                'name' => 'Registrierung',
+                'priority' => 3,
+                'template_id' => 0,
+                'status' => 1,
+            ]);
+        }
+
+        if($cat->getName() == 'Mein Profil') {
+            // Nutzungsbedingungen
+            rex_article_service::addArticle([
+                'category_id' => $cat->getId(),
+                'name' => 'Nutzungsbedingungen akzeptieren',
+                'priority' => 1,
+                'template_id' => 0,
+                'status' => 1,
+            ]);
+            // Profil bearbeiten
+            rex_article_service::addArticle([
+                'category_id' => $cat->getId(),
+                'name' => 'Mein Profil',
+                'priority' => 2,
+                'template_id' => 0,
+                'status' => 1,
+            ]);
+
+            // Passwort ändern
+            rex_article_service::addArticle([
+                'category_id' => $cat->getId(),
+                'name' => 'Passwort ändern',
+                'priority' => 3,
+                'template_id' => 0,
+                'status' => 1,
+            ]);
+
+        }
 
 
     }
 
     /** @api */
-    public static function artAdded(rex_extension_point $ep) :void
+    public static function artAdded(rex_extension_point $ep): void
     {
         /** @var \rex_article $art */
         $art = $ep->getParam('article');
         $module_id = (int) \rex_addon::get('ycom_fast_forward')->getProperty('module_id');
 
-        if($art->getName() === 'Login') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'login.php'
-                    ]);
+        if ($art->getName() === 'Login') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'login.php'
+            ]);
             /// }
+
+            // YCom-Auth Config setzen
+            self::setYComAuthConfig('article_id_login', $art->getId());
         }
 
-        if($art->getName() === 'Logout') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'logout.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Logout') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'logout.php'
+            ]);
+
+            // YCom-Auth Config setzen
+            self::setYComAuthConfig('article_id_logout', $art->getId());
         }
 
-        if($art->getName() === 'Passwort vergessen') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'password-2fa-check.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Passwort vergessen') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'password-2fa-check.php'
+            ]);
         }
 
-        if($art->getName() === 'Passwort zurücksetzen') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'password-2fa-setup.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Passwort zurücksetzen') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'password-2fa-setup.php'
+            ]);
         }
 
 
-        if($art->getName() === 'Mein Profil') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'profile.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Mein Profil') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'profile.php'
+            ]);
         }
 
-        if($art->getName() === 'Passwort ändern') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'password-change.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Passwort ändern') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'password-change.php'
+            ]);
         }
 
-        if($art->getName() === 'Passwort zurücksetzen') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'password-reset.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Passwort zurücksetzen') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'password-reset.php'
+            ]);
         }
 
-        if($art->getName() === 'Registrierung') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'register.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Registrierung') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'register.php'
+            ]);
+
+            rex_config::set('ycom', 'article_id_register', $art->getId());
         }
 
-        if($art->getName() === 'Nutzungsbedingungen akzeptieren') {
-            // if (!rex_article_slice::getFirstSliceForArticle($id)) {
-                \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                        'value10' => 'terms_of_use.php'
-                    ]);
-            // }
+        if ($art->getName() === 'Nutzungsbedingungen akzeptieren') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'terms_of_use.php'
+            ]);
+
+            rex_config::set('ycom', 'article_id_jump_termsofuse', $art->getId());
         }
 
+        if ($art->getName() === 'OTP-Verifizierung') {
+
+            \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value10' => 'otp-verify.php'
+            ]);
+
+            rex_config::set('ycom', 'otp_article_id', $art->getId());
+        }
     }
-
 }
