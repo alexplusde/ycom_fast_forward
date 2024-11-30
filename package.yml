@@ -15,6 +15,7 @@ default_config:
     editor: 'class="form-control redactor-editor--default"'
     first_install: '0000-00-00 00:00:00'
     mailer_profile_id: 0
+    ycom_user_default_status: 0
 
 page:
     title: 'translate:ycom_fast_forward.title'

@@ -13,6 +13,21 @@ $form = rex_config_form::factory($addon->getName());
 
 $form->addFieldset(rex_i18n::msg('ycom_fast_forward.settings.title'));
 
+/* Auswahl des Standard-Status für neue Nutzer */
+$field = $form->addSelectField('ycom_user_default_status', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.ycom_user_default_status'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.ycom_user_default_status.notice'));
+
+$select = $field->getSelect();
+$select->setSize(1);
+
+$options = explode(",",'translate:ycom_account_inactive_termination=-3,translate:ycom_account_inactive_logins=-2,translate:ycom_account_inactive=-1,translate:ycom_account_requested=0,translate:ycom_account_confirm=1,translate:ycom_account_active=2');
+foreach ($options as $option) {
+    $option = explode('=', $option);
+    $label = substr($option[0], 10);
+    $select->addOption(rex_i18n::msg($label), $option[1]);
+}
+
 /* Textfeld zur Eingabe des Objparams für das gewünschte YForm Theme */
 
 $field = $form->addTextField('yform_theme', null, ['class' => 'form-control']);
@@ -50,7 +65,7 @@ $field->setNotice(rex_i18n::msg('ycom_fast_forward.config.mailer_profile.notice'
 $select = $field->getSelect();
 $select->setSize(1);
 if (rex_addon::get('mailer_profile')->isAvailable()) {
-    $options = rex_sql::factory()->setQuery('SELECT id, `name` FROM ' . rex::getTable('mailer_profile') . ' ORDER BY name ASC');
+    $options = rex_sql::factory()->setQuery('SELECT id, CONCAT(id, ": ",`fromname`) as `name` FROM ' . rex::getTable('mailer_profile') . ' ORDER BY name ASC');
     foreach ($options as $option) {
         $select->addOption($option->getValue('name'), $option->getValue('id'));
     }

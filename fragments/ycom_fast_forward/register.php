@@ -2,6 +2,8 @@
 
 /** @var rex_fragment $this */
 
+use Alexplusde\YComFastForward\YComFastForward;
+
 ?>
 <section class="container">
     <div class="row my-3">
@@ -22,7 +24,9 @@
             $yform->setObjectparams('form_showformafterupdate', 0);
             $yform->setObjectparams('real_field_names', true);
 
-            $yform->setValueField('hidden', ['status', '0']);
+            /* Status aus rex_config laden */
+            $status = YComFastForward::getConfig('ycom_user_default_status');
+            $yform->setValueField('hidden', ['status', $status]);
             $yform->setValueField('hidden', ['ycom_groups', '2']);
 
             /* Vorname und Nachname */

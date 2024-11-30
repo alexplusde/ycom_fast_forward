@@ -11,6 +11,9 @@ translate:ycom_fast_forward.module.select.default = Bitte wählen Sie eine Optio
 # Settings
 
 ycom_fast_forward.settings.title = Einstellungen
+ycom_fast_forward.config.ycom_user_default_status = Status
+ycom_fast_forward.config.ycom_user_default_status.notice = Standard-Status für neue YCom-Benutzer
+
 ycom_fast_forward.config.terms_of_use = Nutzungsbedingungen
 ycom_fast_forward.config.terms_of_use.notice = Hier können Sie die Nutzungsbedingungen für die Fast Forward Funktion festlegen.
 ycom_fast_forward.config.yform_theme = YForm Template
@@ -18,6 +21,7 @@ ycom_fast_forward.config.yform_theme.notice = z.B. <code>bootstrap</code> oder <
 ycom_fast_forward.config.editor = Editor
 ycom_fast_forward.config.editor.notice = z.B. <code>class="form-control redactor-editor--default"</code>
 
+ycom_fast_forward.config.mailer_profiles = Mailer-Profile
 ycom_fast_forward.config.mailer_profile = Mailer-Profile
 ycom_fast_forward.config.mailer_profile.notice = Wenn das Addon Mailer Profile installiert ist, können Sie hier ein von PHPMailer abweichendes Profil auswählen.
 ycom_fast_forward.config.mailer_profile.error = Das Addon Mailer Profile ist nicht installiert.
