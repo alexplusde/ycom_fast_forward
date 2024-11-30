@@ -7,7 +7,7 @@ use Alexplusde\YComFastForward\YComFastForward;
 $input = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/input.php'));
 $output = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/output.php'));
 
-$module = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE key = "ycom_fast_forward"');
+$module = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE `key` = "ycom_fast_forward"');
 
 if($module->getRows() == 0) {
     /* Modul anlegen */
@@ -23,7 +23,7 @@ if($module->getRows() == 0) {
     /* Modul aktualisieren */
     rex_sql::factory()
     ->setTable(rex::getTablePrefix() . 'module')
-    ->setWhere('key = "ycom_fast_forward"')
+    ->setWhere('`key` = "ycom_fast_forward"')
     ->setValue('input', $input)
     ->setValue('output', $output)
     ->setValue('updateuser', 'ycom_fast_forward')
@@ -50,7 +50,7 @@ Benötigte Kategorien / Artikel für YCom Fast Forward:
 * * Nutzungsbedingungen akzeptieren
 * Logout
 */
-
+/*
 $module_id = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE key = "ycom_fast_forward"')->getValue('id');
 
 rex_category_service::addCategory(0, [
@@ -88,3 +88,5 @@ rex_article_slice::__set_state([
         'ycom_auth' => 'login'
     ]
 ]);
+
+*/

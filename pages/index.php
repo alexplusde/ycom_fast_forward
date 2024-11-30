@@ -4,11 +4,14 @@
 
 use Alexplusde\YComFastForward\YComFastForward;
 
+/* Titel ausgeben */
+echo rex_view::title(rex_i18n::msg('ycom_fast_forward.title'));
+
 $addon = rex_addon::get('ycom_fast_forward');
 
-$form = new rex_config_form($addon->getName());
+$form = rex_config_form::factory($addon->getName());
 
-$form->addFieldset('translate:ycom_fast_forward_settings');
+$form->addFieldset('translate:ycom_fast_forward.settings.title');
 
 /* Textfeld zur Eingabe des Objparams für das gewünschte YForm Theme */
 
@@ -35,5 +38,10 @@ $field = $form->addTextField('editor', null, ['class' => 'form-control']);
 $field->setLabel('translate:ycom_fast_forward.config.editor');
 $field->setNotice('translate:ycom_fast_forward.config.editor.notice');
 
+// Formular ausgeben mit Core Section Fragment */
 
-echo $form->get();
+$fragment = new rex_fragment();
+$fragment->setVar('class', 'edit', false);
+$fragment->setVar('title', $addon->i18n('ycom_fast_forward.settings.title'), false);
+$fragment->setVar('body', $form->get(), false);
+echo $fragment->parse('core/page/section.php');

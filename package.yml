@@ -21,6 +21,11 @@ page:
     block: ycom
     icon: rex-icon fa-fast-forward
     subpages:
+        settings:
+            title: 'translate:ycom_fast_forward.settings.title'
+            perm: admin[]
+            pjax: false
+            icon: rex-icon fa-cog
         docs:
             title: 'translate:ycom_fast_forward.docs.title'
             perm: admin[]

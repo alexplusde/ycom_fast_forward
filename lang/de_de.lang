@@ -6,5 +6,7 @@ ycom_fast_forward.docs.title = Dokumentation
 ycom_fast_forward.module.name = YCom Fast Forward
 translate:ycom_fast_forward.module.select.default = Bitte wählen Sie eine Option aus
 # Settings
+
+ycom_fast_forward.settings.title = Einstellungen
 ycom_fast_forward.config.terms_of_use = Nutzungsbedingungen
 ycom_fast_forward.config.terms_of_use.desc = Hier können Sie die Nutzungsbedingungen für die Fast Forward Funktion festlegen.
