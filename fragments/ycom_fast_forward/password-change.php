@@ -18,9 +18,6 @@ $description = $this->getVar('description', '');
     </div>
     <div class="row">
     <div class="col-12 col-md-3">
-            <?php
-                echo $this->getSubfragment('sh_aktuell/sh_kontaktstelle/navigation.php');
-            ?>
         </div>
         <div class="col-12 col-md-9">
             <?php
