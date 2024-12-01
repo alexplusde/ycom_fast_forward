@@ -29,6 +29,7 @@ $description = $this->getVar('description', '');
             $yform->setObjectparams('real_field_names', true);
             $yform->setValueField('password', ['old_password', '{{ycom_user_old_password}}']);
 
+
             /* Passwort-Regeln aus Einstellungen übernehmen */
             $password_rule = YComFastForward::getConfig('password_rules');
             if($password_rule !== "") {
@@ -43,6 +44,9 @@ $description = $this->getVar('description', '');
             $yform->setValidateField('compare', ['password', 'old_password', '==', '{{ycom_user_password_same_as_old}}']);
             $yform->setValidateField('empty', ['password', '{{ycom_user_password_required}}']);
             $yform->setValidateField('compare', ['password', 'password_2', '!=', '{{ycom_user_password_mismatch}}']);
+
+            $yform->setValidateField('pwned', ['password','translate:ycom_fast_forward.ycom_user.validate.pwned.error']);
+
             $yform->setActionField('showtext', ['{{ycom_user_password_updated}}', '', '', '1']);
             $yform->setActionField('ycom_auth_db');
             $yform->setValueField('hidden', ['new_password_required', '0']);

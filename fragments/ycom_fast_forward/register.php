@@ -70,6 +70,8 @@ $description = $this->getVar('description', '');
             $yform->setValidateField('empty', ['password_confirm', '{{ycom_user_please_enter_password}}', '', 'no_db']);
             $yform->setValidateField('compare', ['password', 'password_confirm', '{{ycom_user_please_enter_password_twice}}']);
 
+            $yform->setValidateField('pwned', ['password','translate:ycom_fast_forward.ycom_user.validate.pwned.error']);
+
             /* Nutzungsbedingungen akzeptieren */
             $yform->setValueField('checkbox', ['termsofuse_accepted', '{{ycom_user_termsofuse_accepted}}', '', '', '{"required":"required"}']);
             $yform->setValidateField('empty', ['termsofuse_accepted', '{{ycom_user_please_accept_termsofuse}}']);
