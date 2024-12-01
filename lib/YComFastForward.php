@@ -2,7 +2,6 @@
 
 namespace Alexplusde\YComFastForward;
 
-use rex_article_service;
 use rex_fragment;
 use rex_config;
 use rex_extension_point;
@@ -69,13 +68,17 @@ class YComFastForward
     /** @api */
     public static function artAdded(rex_extension_point $ep): void
     {
-        /** @var \rex_article $art */
-        $art = $ep->getParam('article');
+        $art = \rex_article::get($ep->getParam('id'));
+
         $module_id = (int) \rex_addon::get('ycom_fast_forward')->getProperty('module_id');
+
+
 
         if ($art->getName() === 'Login') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Login',
+                'value2' => '<p>Loggen Sie sich ein.</p>',
                 'value10' => 'login.php'
             ]);
             /// }
@@ -87,6 +90,8 @@ class YComFastForward
         if ($art->getName() === 'Logout') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Login',
+                'value2' => '<p>Loggen Sie sich ein.</p>',
                 'value10' => 'logout.php'
             ]);
 
@@ -97,6 +102,8 @@ class YComFastForward
         if ($art->getName() === 'Passwort vergessen') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Login',
+                'value2' => '<p>Loggen Sie sich ein.</p>',
                 'value10' => 'password-2fa-check.php'
             ]);
         }
@@ -104,6 +111,8 @@ class YComFastForward
         if ($art->getName() === 'Passwort zurücksetzen') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Login',
+                'value2' => '<p>Loggen Sie sich ein.</p>',
                 'value10' => 'password-2fa-setup.php'
             ]);
         }
@@ -112,6 +121,8 @@ class YComFastForward
         if ($art->getName() === 'Mein Profil') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Mein Profil',
+                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
                 'value10' => 'profile.php'
             ]);
         }
@@ -119,6 +130,8 @@ class YComFastForward
         if ($art->getName() === 'Passwort ändern') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Mein Profil',
+                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
                 'value10' => 'password-change.php'
             ]);
         }
@@ -126,6 +139,8 @@ class YComFastForward
         if ($art->getName() === 'Passwort zurücksetzen') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Mein Profil',
+                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
                 'value10' => 'password-reset.php'
             ]);
         }
@@ -133,6 +148,8 @@ class YComFastForward
         if ($art->getName() === 'Registrierung') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Mein Profil',
+                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
                 'value10' => 'register.php'
             ]);
 
@@ -142,6 +159,8 @@ class YComFastForward
         if ($art->getName() === 'Nutzungsbedingungen akzeptieren') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Mein Profil',
+                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
                 'value10' => 'terms_of_use.php'
             ]);
 
@@ -151,6 +170,8 @@ class YComFastForward
         if ($art->getName() === 'OTP-Verifizierung') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
+                'value1' => 'Mein Profil',
+                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
                 'value10' => 'otp-verify.php'
             ]);
 
