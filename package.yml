@@ -9,6 +9,7 @@ requires:
     packages:
         phpmailer: '>=2.14.0'
         ycom: '>=4.3.0'
+        yform_field : '>=2.7.3'
     redaxo: '^5.18.0'
 
 default_config:
