@@ -122,6 +122,9 @@ class YComFastForward
                 'value2' => '<p>Wenn Sie Ihr Passwort vergessen haben, können Sie hier das Passwort zurücksetzen. Sie erhalten an die bei uns hinterlegte E-Mail-Adresse eine Mail mit einem Link.</p><p>Im Anschluss können Sie das Passwort zurücksetzen.</p>',
                 'value10' => 'password-2fa-check.php'
             ]);
+
+            // YCom-Auth Config setzen
+            self::setYComAuthConfig('article_id_password', $art->getId());
         }
 
         if ($art->getName() === 'Passwort zurücksetzen') {
@@ -131,6 +134,9 @@ class YComFastForward
                 'value2' => '<p>Setzen Sie Ihr Passwort zurück. Verwenden Sie ein Passwort, das Sie sonst nicht benutzen.</p>',
                 'value10' => 'password-2fa-setup.php'
             ]);
+
+            // YCom-Auth Config setzen
+            self::setYComAuthConfig('otp_article_id', $art->getId());
         }
 
 
@@ -141,6 +147,7 @@ class YComFastForward
                 'value2' => '<p>Hier können Sie die bei uns hinterlegten Informationen korrigieren.</p>',
                 'value10' => 'profile.php'
             ]);
+
         }
 
         if ($art->getName() === 'Passwort ändern') {
@@ -150,6 +157,7 @@ class YComFastForward
                 'value2' => '<p>Achten Sie darauf, ein Passwort zu verwenden, das Sie sonst nirgendwo benutzen.</p>',
                 'value10' => 'password-change.php'
             ]);
+
         }
 
         if ($art->getName() === 'Passwort zurücksetzen') {
@@ -159,6 +167,9 @@ class YComFastForward
                 'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
                 'value10' => 'password-reset.php'
             ]);
+
+            // YCom-Auth Config setzen
+            self::setYComAuthConfig('article_id_password', $art->getId());
         }
 
         if ($art->getName() === 'Registrierung') {
