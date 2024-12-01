@@ -104,6 +104,8 @@ Das Addon enthält auch E-Mail-Templates, die für die Registrierung, das Zurüc
 
 Wenn du die Nutzungsbedingungen änderst, kannst du die Einwilligung der Nutzungsbedingungen für alle Benutzer mit einem Klick zurücksetzen. Alle Nutzer müssen dann erneut den Nutzungsbedingungen zustimmen.
 
+![blaupause test_redaxo_index php_page=ycom_ycom_fast_forward_terms_of_use (2)](https://github.com/user-attachments/assets/4cf968e0-caa4-429b-8b17-d30ddfff646c)
+
 ## Health-Seite
 
 Das Addon enthält eine Health-Seite, die die Installation überprüft und bei Bedarf Warnungen ausgibt.
@@ -115,6 +117,8 @@ Aktuell werden folgende Informationen ausgegeben:
 3. Anzahl der Benutzer je Status (aktiv, inaktiv, gesperrt)
 
 Weitere nützliche Prüfungen sind gerne gesehen und willkommen.
+
+![blaupause test_redaxo_index php_page=ycom_ycom_fast_forward_health (1)](https://github.com/user-attachments/assets/494efba7-a231-4fd1-8659-a0b3a33acc75)
 
 ## Autor
 
