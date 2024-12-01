@@ -49,15 +49,16 @@ Kategorien und Artikeln werden die empfohlenen / Benötigten Berechtigungen zuge
 
 ## Einstellungen
 
-### Theme
-
-Objektparameter für die YForm-Formulare, standardmäßig `bootstrap5,bootstrap`.
-
-> Tipp: Nutze ein eigenes bootstrap5-Theme, um Bootstrap 5 zu verwenden.
-
-### Nutzungsbedingungen
-
-Hier können die Nutzungsbedingungen für die Registrierung und das Profil hinterlegt werden.
+| Einstellung                         | Einstellungsschlüssel          | Beschreibung                                                                   |
+|-------------------------------------|--------------------------------|--------------------------------------------------------------------------------|
+| Standard-Status für neue Nutzer     | `ycom_user_default_status`     | Auswahl des Standard-Status für neue Nutzer                                    |
+| YForm Theme                         | `yform_theme`                  | Textfeld zur Eingabe des Objparams für das gewünschte YForm Theme              |
+| Nutzungsbedingungen erforderlich    | `terms_of_use_required`        | Auswahl, ob Nutzungsbedingungen zugestimmt werden muss oder nicht              |
+| Standard YCom Gruppe bei Registrierung | `default_ycom_group_id`     | Auswahl der passenden YCom-Gruppe bei Registrierung                            |
+| Passwortregeln                      | `password_rules`               | Textfeld zur Eingabe der Passwortregeln                                        |
+| Nutzungsbedingungen                 | `terms_of_use`                 | Textfeld zur Eingabe der Nutzungsbedingungen                                   |
+| WYSIWYG-Editor-Attribute            | `editor`                       | WYSIWYG-Editor-Attribute für die Nutzungsbedingungen                           |
+| Mailer-Profil                       | `mailer_profile_id`            | Auswahl des gewünschten Mailer-Profils, wenn das Addon installiert ist         |
 
 ## Fragmente
 
@@ -80,6 +81,12 @@ Kopiere dazu die Module von `src/addons/ycom_fast_forward/fragments/ycom_fast_fo
 ## E-Mail-Templates
 
 Das Addon enthält auch E-Mail-Templates, die für die Registrierung, das Zurücksetzen des Passworts und die 2FA verwendet werden.
+
+| Template | Aufgabe / Zweck |
+| --- | --- |
+| `ycom_fast_forward.access_request` | E-Mail für das Zurücksetzen des Passworts |
+| `ycom_fast_forward.access_request` | E-Mail für die Registrierung |
+| `ycom_otp_code_template` | E-Mail für die 2FA |
 
 ## Autor
 
