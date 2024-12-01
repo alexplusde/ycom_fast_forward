@@ -60,6 +60,14 @@
             color: #ff8800;
             text-decoration: none;
         }
+        a.btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff8800;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
