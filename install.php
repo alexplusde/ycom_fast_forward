@@ -124,7 +124,7 @@ if ($category_myprofile !== null) {
 
     // Nutzungsbedingungen
     rex_article_service::addArticle([
-        'category_id' => $cat->getId(),
+        'category_id' => $category_myprofile->getId(),
         'name' => 'Nutzungsbedingungen akzeptieren',
         'priority' => 1,
         'template_id' => 0,
@@ -132,7 +132,7 @@ if ($category_myprofile !== null) {
     ]);
     // Profil bearbeiten
     rex_article_service::addArticle([
-        'category_id' => $cat->getId(),
+        'category_id' => $category_myprofile->getId(),
         'name' => 'Mein Profil',
         'priority' => 2,
         'template_id' => 0,
@@ -141,7 +141,7 @@ if ($category_myprofile !== null) {
 
     // Passwort ändern
     rex_article_service::addArticle([
-        'category_id' => $cat->getId(),
+        'category_id' => $category_myprofile->getId(),
         'name' => 'Passwort ändern',
         'priority' => 3,
         'template_id' => 0,
