@@ -10,8 +10,8 @@ if (rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTable('yform_email_
 rex_sql::factory()
 ->setTable(rex::getTable('yform_email_template'))
 ->setValue('name', 'ycom_fast_forward.access_request')
-->setValue('mail_from', rex_config::get('mailer', 'replyto'))
-->setValue('mail_from_name', rex_config::get('site_name'))
+->setValue('mail_from', rex_config::get('phpmailer', 'from') ?? 'noreply@' . $_SERVER['HTTP_HOST'])
+->setValue('mail_from_name', rex_config::get('phpmailer', 'fromname'))
 ->setValue('subject', 'Zugriffsanfrage')
 ->setValue('body_html',
 "<?php
@@ -30,8 +30,8 @@ $full_url = trim(rex::getServer(),'/').trim($article_url,'.');
 rex_sql::factory()
 ->setTable(rex::getTable('yform_email_template'))
 ->setValue('name', 'ycom_otp_code_template')
-->setValue('mail_from', rex_config::get('mailer', 'replyto'))
-->setValue('mail_from_name', rex_config::get('site_name'))
+->setValue('mail_from', rex_config::get('phpmailer', 'from') ?? 'noreply@' . $_SERVER['HTTP_HOST'])
+->setValue('mail_from_name', rex_config::get('phpmailer', 'fromname'))
 ->setValue('subject', 'Ihr Einmalpasswort')
 ->setValue('body_html',
 "<p>Ihr Einmalpasswort lautet: <strong>REX_YFORM_DATA[field=otp_code]</strong></p>")
