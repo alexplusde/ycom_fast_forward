@@ -46,6 +46,14 @@ class YComFastForward
         return rex_config::set('ycom/auth', $key, $value);
     }
 
+    public static function setYcomAuthForArticle(int $article_id, int $auth_type = 0): void
+    {
+        \rex_sql::factory()->setTable(\rex::getTable('article'))
+            ->setWhere('id = :pid', ['id' => $article_id])
+            ->setValue('ycom_auth_type', $auth_type)
+            ->update();
+    }
+
     /* Extension Point Funktionen */
     /** @api */
     public static function CatAdded(rex_extension_point $ep): void
