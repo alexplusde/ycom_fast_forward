@@ -205,4 +205,24 @@ class YComFastForward
             rex_config::set('ycom', 'otp_article_id', $art->getId());
         }
     }
+
+    /** @api */
+    public static function getEmailHeaderLogoAsBase64Img(): string
+    {
+        $logo = rex_config::get('ycom_fast_forward', 'email_header_logo');
+
+        if ($logo) {
+            $path = rex_path::media($logo);
+            $type = pathinfo($path, PATHINFO_EXTENSION);
+            $data = file_get_contents($path);
+            return '<img alt="" src="data:image/' . $type . ';base64,' . base64_encode($data) .'" />';
+        }
+
+        return '';
+    }
+
+    /** @api */
+    public static function getEmailFooter() :string {
+        return self::getConfig('email_footer');
+    }
 }

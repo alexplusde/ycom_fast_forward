@@ -38,6 +38,12 @@ ycom_fast_forward.config.yform_theme.notice = z.B. <code>bootstrap</code> oder <
 ycom_fast_forward.config.editor = Editor
 ycom_fast_forward.config.editor.notice = z.B. <code>class="form-control redactor-editor--default"</code>
 
+ycom_fast_forward.config.email_header_logo = E-Mail-Header-Logo
+ycom_fast_forward.config.email_header_logo.notice = Hier können Sie das Logo für den E-Mail-Header festlegen. Das Logo sollte im Ordner <code>assets/addons/ycom_fast_forward</code> abgelegt werden.
+
+ycom_fast_forward.config.email_footer = E-Mail-Footer
+ycom_fast_forward.config.email_footer.notice = Hier können Sie den E-Mail-Footer festlegen.
+
 ycom_fast_forward.config.mailer_profiles = Mailer-Profile
 ycom_fast_forward.config.mailer_profile = Mailer-Profile
 ycom_fast_forward.config.mailer_profile.notice = Wenn das Addon Mailer Profile installiert ist, können Sie hier ein von PHPMailer abweichendes Profil auswählen.

@@ -1,5 +1,8 @@
 <?php
 /** @var rex_fragment $this */
+
+use Alexplusde\YComFastForward\YComFastForward;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,14 +77,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgMBAp1KAAA="
-                alt="Logo">
+            <?= YComFastForward::getEmailHeaderLogoAsBase64Img() ?>
         </div>
         <div class="content">
             <?= $this->subfragment('ycom_fast_forward/yform_email/' . $this->getVar('file', '')) ?>
         </div>
         <div class="footer">
-            <p>Impressum: Ihre Firma, Adresse, Kontaktinformationen</p>
+            <p><?= YComFastForward::getEmailFooter() ?></p>
         </div>
     </div>
 </body>

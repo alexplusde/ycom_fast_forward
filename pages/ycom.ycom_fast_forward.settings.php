@@ -83,6 +83,16 @@ if (rex_addon::get('mailer_profile')->isAvailable()) {
     $select->addOption(rex_i18n::msg('ycom_fast_forward.config.mailer_profile.error'), '0');
 }
 
+/* Logo Mediendatei für die Kopfzeile des E-Mail-Templates hinzufügen */
+$field = $form->addMediaField('email_header_logo', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.email_header_logo'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.email_header_logo.notice'));
+
+/* Fußzeile für das E-Mail-Template hinzufügen */
+$field = $form->addTextAreaField('email_footer', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.email_footer'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.email_footer.notice'));
+
 $form->addFieldset(rex_i18n::msg('ycom_fast_forward.config.terms_of_use'));
 
 /* Textfeld zur Eingabe der Nutzungsbedingungen */
