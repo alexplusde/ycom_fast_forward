@@ -13,32 +13,57 @@ echo rex_view::title(rex_i18n::msg('ycom_fast_forward.title'));
 
 $content = '';
 
+$total_ycom_user = rex_ycom_user::query()->find()->count();
+
 $content .= '<div class="row">';
-$content .= '<div class="col-md-3">';
+$content .= '<div class="col-md-2">';
 $content .= '<div class="card">';
-$content .= '<div class="card-header h4">Anzahl der Benutzer</div>';
-$content .= '<div class="card-body">123</div>';
+$content .= '<div class="card-header h4">Benutzer insgesamt</div>';
+$content .= '<div class="card-body"><span class="h1">'.$total_ycom_user.'</span></div>';
 $content .= '</div>';
 $content .= '</div>';
 
-$content .= '<div class="col-md-3">';
+$status_options = explode(",",'translate:ycom_account_inactive_termination=-3,translate:ycom_account_inactive_logins=-2,translate:ycom_account_inactive=-1,translate:ycom_account_requested=0,translate:ycom_account_confirm=1,translate:ycom_account_active=2');
+
+$status = [];
+foreach ($status_options as $option) {
+    $option = explode('=', $option);
+    $label = substr($option[0], 10);
+    $status[$option[1]] = rex_i18n::msg($label);
+    $status[$option[1]] .= ': '.rex_ycom_user::query()->where('status', $option[1])->count();
+}
+$status_string = implode('<br>', $status);
+
+$content .= '<div class="col-md-4">';
 $content .= '<div class="card">';
-$content .= '<div class="card-header h4">Anzahl der Benutzer je Status</div>';
-$content .= '<div class="card-body">Aktiv: 123<br>Inaktiv: 123<br>Gesperrt: 123</div>';
+$content .= '<div class="card-header h4">Benutzer je Status</div>';
+$content .= '<div class="card-body">'.$status_string.'</div>';
 $content .= '</div>';
 $content .= '</div>';
 
-$content .= '<div class="col-md-3">';
-$content .= '<div class="card">';
-$content .= '<div class="card-header h4">Anzahl der Benutzer je Rolle / YCom-Gruppe</div>';
-$content .= '<div class="card-body">Administrator: 123<br>Redakteur: 123<br>Autor: 123<br>Gast: 123</div>';
-$content .= '</div>';
-$content .= '</div>';
+$groups = rex_ycom_group::query()->find();
+$group_count = [];
+foreach ($groups as $group) {
+    $group_count[$group->getName()] = rex_ycom_user::query()->where('ycom_groups', $group->getId())->count();
+}
+$group_string = '';
+foreach ($group_count as $group_name => $count) {
+    $group_string .= $group_name.': '.$count.'<br>';
+}
 
 $content .= '<div class="col-md-3">';
 $content .= '<div class="card">';
-$content .= '<div class="card-header h4">Anzahl der Benutzer, die Nutzungsbedingungen akzeptiert haben</div>';
-$content .= '<div class="card-body">123</div>';
+$content .= '<div class="card-header h4">Benutzer je Rolle / YCom-Gruppe</div>';
+$content .= '<div class="card-body">'.$group_string.'</div>';
+$content .= '</div>';
+$content .= '</div>';
+
+$total_ycom_user_accepted_terms = rex_ycom_user::query()->where('termsofuse_accepted', 1)->count();
+
+$content .= '<div class="col-md-3">';
+$content .= '<div class="card">';
+$content .= '<div class="card-header h4">Nutzungsbedingungen akzeptiert</div>';
+$content .= '<div class="card-body">'.$total_ycom_user_accepted_terms.'</div>';
 $content .= '</div>';
 $content .= '</div>';
 

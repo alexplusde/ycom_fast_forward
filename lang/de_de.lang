@@ -45,7 +45,7 @@ ycom_fast_forward.config.mailer_profile.error = Das Addon Mailer Profile ist nic
 
 # Terms of Use Reset Button
 ycom_fast_forward.terms_of_use.title = Nutzungsbedingungen zurücksetzen
-ycom_fast_forward.terms_of_use.reset_info = Hierbei wird das Feld <code>rex_ycom_user.terms_of_use</code> für alle YCom-Benutzer zurückgesetzt. Dies bedeutet, dass alle Benutzer die Nutzungsbedingungen erneut akzeptieren müssen. Dieser Vorgang kann nicht rückgängig gemacht werden!
+ycom_fast_forward.terms_of_use.reset_info = Hierbei wird das Feld <code>rex_ycom_user.termsofuse_accepted</code> für alle YCom-Benutzer zurückgesetzt. Dies bedeutet, dass alle Benutzer die Nutzungsbedingungen erneut akzeptieren müssen. Dieser Vorgang kann nicht rückgängig gemacht werden!
 ycom_fast_forward.terms_of_use.reset_button = Ich habe die Warnung gelesen und möchte die Einwilligung zurücksetzen
 ycom_fast_forward.terms_of_use.reset_success = Die Nutzungsbedingungen wurden zurückgesetzt.
 ycom_fast_forward.terms_of_use.section.title = Einwilligung für Nutzungsbedingungen für alle YCom-Nutzer zurücksetzen

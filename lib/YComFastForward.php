@@ -57,7 +57,7 @@ class YComFastForward
     public static function resetYComUserTermsOfUseAccepted(): void
     {
         $users = \rex_ycom_user::query()->find();
-        $users->setValue('terms_of_use_accepted', 0);
+        $users->setValue('termsofuse_accepted', 0);
         $users->save();
 
     }
