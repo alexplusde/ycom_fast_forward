@@ -94,7 +94,7 @@ class YComFastForward
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
                 'value1' => 'Login',
-                'value2' => '<p>Loggen Sie sich ein.</p>',
+                'value2' => '<p>Loggen Sie sich ein. Wenn Sie Ihre Zugangsdaten nicht mehr haben, können Sie auch Ihr Passwort zurücksetzen. Für alle anderen Probleme, wenden Sie sich bitte direkt an uns.</p>',
                 'value10' => 'login.php'
             ]);
             /// }
@@ -106,8 +106,8 @@ class YComFastForward
         if ($art->getName() === 'Logout') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                'value1' => 'Login',
-                'value2' => '<p>Loggen Sie sich ein.</p>',
+                'value1' => 'Logout',
+                'value2' => '<p></p>',
                 'value10' => 'logout.php'
             ]);
 
@@ -118,8 +118,8 @@ class YComFastForward
         if ($art->getName() === 'Passwort vergessen') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                'value1' => 'Login',
-                'value2' => '<p>Loggen Sie sich ein.</p>',
+                'value1' => 'Passwort vergessen',
+                'value2' => '<p>Wenn Sie Ihr Passwort vergessen haben, können Sie hier das Passwort zurücksetzen. Sie erhalten an die bei uns hinterlegte E-Mail-Adresse eine Mail mit einem Link.</p><p>Im Anschluss können Sie das Passwort zurücksetzen.</p>',
                 'value10' => 'password-2fa-check.php'
             ]);
         }
@@ -127,8 +127,8 @@ class YComFastForward
         if ($art->getName() === 'Passwort zurücksetzen') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                'value1' => 'Login',
-                'value2' => '<p>Loggen Sie sich ein.</p>',
+                'value1' => 'Passwort zurücksetzen',
+                'value2' => '<p>Setzen Sie Ihr Passwort zurück. Verwenden Sie ein Passwort, das Sie sonst nicht benutzen.</p>',
                 'value10' => 'password-2fa-setup.php'
             ]);
         }
@@ -138,7 +138,7 @@ class YComFastForward
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
                 'value1' => 'Mein Profil',
-                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
+                'value2' => '<p>Hier können Sie die bei uns hinterlegten Informationen korrigieren.</p>',
                 'value10' => 'profile.php'
             ]);
         }
@@ -146,8 +146,8 @@ class YComFastForward
         if ($art->getName() === 'Passwort ändern') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                'value1' => 'Mein Profil',
-                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
+                'value1' => 'Passwort ändern',
+                'value2' => '<p>Achten Sie darauf, ein Passwort zu verwenden, das Sie sonst nirgendwo benutzen.</p>',
                 'value10' => 'password-change.php'
             ]);
         }
@@ -164,8 +164,8 @@ class YComFastForward
         if ($art->getName() === 'Registrierung') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                'value1' => 'Mein Profil',
-                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
+                'value1' => 'Registreirung',
+                'value2' => '<p>Füllen Sie das Formular aus, um fortzufahren.</p>',
                 'value10' => 'register.php'
             ]);
 
@@ -175,8 +175,8 @@ class YComFastForward
         if ($art->getName() === 'Nutzungsbedingungen akzeptieren') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                'value1' => 'Mein Profil',
-                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
+                'value1' => 'Nutzungsbedingungen akzeptieren',
+                'value2' => '<p>In unseren Nutzungsbedingungen wird beschrieben, wie Sie unseren geschützten Bereich verwenden dürfen.</p>',
                 'value10' => 'terms_of_use.php'
             ]);
 
@@ -186,8 +186,8 @@ class YComFastForward
         if ($art->getName() === 'OTP-Verifizierung') {
 
             \rex_content_service::addSlice($art->getId(), 1, 1, $module_id, [
-                'value1' => 'Mein Profil',
-                'value2' => '<p>Bearbeiten Sie Ihr Profil.</p>',
+                'value1' => 'OTP-Verifizierung',
+                'value2' => '<p>Verwenden Sie unsere 2-Faktor-Authentifzierung, um Ihr Konto zu schützen.</p>',
                 'value10' => 'otp-verify.php'
             ]);
 
