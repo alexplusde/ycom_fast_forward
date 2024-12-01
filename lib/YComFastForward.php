@@ -54,6 +54,14 @@ class YComFastForward
             ->update();
     }
 
+    public static function resetYComUserTermsOfUseAccepted(): void
+    {
+        $users = \rex_ycom_user::query()->find();
+        $users->setValue('terms_of_use_accepted', 0);
+        $users->save();
+
+    }
+
     /* Extension Point Funktionen */
     /** @api */
     public static function CatAdded(rex_extension_point $ep): void
