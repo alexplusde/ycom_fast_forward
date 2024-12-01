@@ -100,6 +100,22 @@ Das Addon enthält auch E-Mail-Templates, die für die Registrierung, das Zurüc
 | `ycom_fast_forward.access_request` | E-Mail für die Registrierung |
 | `ycom_otp_code_template` | E-Mail für die 2FA |
 
+## Einwilligung Nutzungsbedingungen an YCom-Benutzern zurücksetzen
+
+Wenn du die Nutzungsbedingungen änderst, kannst du die Einwilligung der Nutzungsbedingungen für alle Benutzer mit einem Klick zurücksetzen. Alle Nutzer müssen dann erneut den Nutzungsbedingungen zustimmen.
+
+## Health-Seite
+
+Das Addon enthält eine Health-Seite, die die Installation überprüft und bei Bedarf Warnungen ausgibt.
+
+Aktuell werden folgende Informationen ausgegeben:
+
+1. Anzahl der YCom-Benutzer
+2. Anzahl Benutzer je YCom-Gruppe
+3. Anzahl der Benutzer je Status (aktiv, inaktiv, gesperrt)
+
+Weitere nützliche Prüfungen sind gerne gesehen und willkommen.
+
 ## Autor
 
 [Alexander Walther](https://github.com/alexplusde)
