@@ -4,6 +4,9 @@
 
 use Alexplusde\YComFastForward\YComFastForward;
 
+$password_rules = json_decode(YComFastForward::getConfig('password_rules'));
+YComFastForward::setConfig('password_rules', json_encode($password_rules, JSON_PRETTY_PRINT));
+
 /* Titel ausgeben */
 echo rex_view::title(rex_i18n::msg('ycom_fast_forward.title'));
 
@@ -34,21 +37,6 @@ $field = $form->addTextField('yform_theme', null, ['class' => 'form-control']);
 $field->setLabel(rex_i18n::msg('ycom_fast_forward.config.yform_theme'));
 $field->setNotice(rex_i18n::msg('ycom_fast_forward.config.yform_theme.notice'));
 
-$form->addFieldset(rex_i18n::msg('ycom_fast_forward.config.terms_of_use'));
-
-/* Textfeld zur Eingabe der Nutzungsbedingungen */
-
-$editor = YComFastForward::getConfig('editor');
-
-/* Auswahl, ob Nutzungsbedingungen zugestimmt werden muss oder nicht */
-$field = $form->addSelectField('terms_of_use_required', null, ['class' => 'form-control']);
-$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required'));
-$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.notice'));
-
-$select = $field->getSelect();
-$select->setSize(1);
-$select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.no'), '0');
-$select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.yes'), '1');
 
 /* Auswahl der passenden YCom-Gruppe bei Registrierung */
 
@@ -62,7 +50,8 @@ $select->addOption(rex_i18n::msg('ycom_fast_forward.config.default_ycom_group_id
 $select->addSqlOptions('SELECT id, name FROM ' . rex::getTable('ycom_group') . ' ORDER BY name ASC');
 
 /* Passwortregeln */
-$field = $form->addTextField('password_rules', null, ['class' => 'form-control']);
+$field = $form->addTextAreaField('password_rules', null, ['class' => 'form-control codemirror']);
+$field->setAttribute('data-codemirror-mode', 'json');
 $field->setLabel(rex_i18n::msg('ycom_fast_forward.config.password_rules'));
 $field->setNotice(rex_i18n::msg('ycom_fast_forward.config.password_rules.notice'));
 
@@ -74,23 +63,6 @@ $field->getValidator()->add('custom', rex_i18n::msg('ycom_fast_forward.config.pa
     } 
     return true;
 });
-
-
-/* Textfeld zur Eingabe der Nutzungsbedingungen */
-
-$field = $form->addTextAreaField('terms_of_use', null, ['class' => 'form-control']);
-if (strval(rex_config::get('ycom_fast_forward', 'editor')) !== '') {
-    $field->setAttribute('class', '###ycom_fast_forward-settings-editor###');
-}
-$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.terms_of_use'));
-$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.terms_of_use.notice'));
-
-/* WYSIWYG-Editor-Attribute für die Nutzungsbedingungen festlegen */
-
-$field = $form->addTextField('editor', null, ['class' => 'form-control']);
-$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.editor'));
-$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.editor.notice'));
-
 
 // Fieldset für Addon Mailer-Profile hinzufügen
 $form->addFieldset(rex_i18n::msg('ycom_fast_forward.config.mailer_profiles'));
@@ -110,6 +82,37 @@ if (rex_addon::get('mailer_profile')->isAvailable()) {
 } else {
     $select->addOption(rex_i18n::msg('ycom_fast_forward.config.mailer_profile.error'), '0');
 }
+
+$form->addFieldset(rex_i18n::msg('ycom_fast_forward.config.terms_of_use'));
+
+/* Textfeld zur Eingabe der Nutzungsbedingungen */
+$editor = YComFastForward::getConfig('editor');
+
+/* Auswahl, ob Nutzungsbedingungen zugestimmt werden muss oder nicht */
+$field = $form->addSelectField('terms_of_use_required', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.notice'));
+
+$select = $field->getSelect();
+$select->setSize(1);
+$select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.no'), '0');
+$select->addOption(rex_i18n::msg('ycom_fast_forward.config.terms_of_use_required.yes'), '1');
+
+/* Textfeld zur Eingabe der Nutzungsbedingungen */
+
+$field = $form->addTextAreaField('terms_of_use', null, ['class' => 'form-control']);
+if (strval(rex_config::get('ycom_fast_forward', 'editor')) !== '') {
+    $field->setAttribute('class', '###ycom_fast_forward-settings-editor###');
+}
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.terms_of_use'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.terms_of_use.notice'));
+
+/* WYSIWYG-Editor-Attribute für die Nutzungsbedingungen festlegen */
+
+$field = $form->addTextField('editor', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.editor'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.editor.notice'));
+
 
 // Formular ausgeben mit Core Section Fragment */
 
