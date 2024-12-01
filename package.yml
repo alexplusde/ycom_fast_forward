@@ -21,26 +21,32 @@ default_config:
     default_ycom_group_id : 0
     password_rules: '{"length":{"min":10},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":1},"symbol":{"min":0}}'
 
-page:
-    title: 'translate:ycom_fast_forward.title'
-    perm: admin[]
-    block: ycom
-    icon: rex-icon fa-fast-forward
-    subpages:
-        settings:
-            title: 'translate:ycom_fast_forward.settings.title'
-            perm: admin[]
-            pjax: false
-            icon: rex-icon fa-cog
-        docs:
-            title: 'translate:ycom_fast_forward.docs.title'
-            perm: admin[]
-            pjax: false
-            itemClass: pull-right
-            icon: rex-icon fa-info-circle
-        terms_of_use:
-            title: 'translate:ycom_fast_forward.terms_of_use.title'
-            perm: admin[]
-            pjax: false
-            itemClass: pull-right text-white
-            icon: rex-icon fa-file-alt
+pages:
+    ycom/ycom_fast_forward:
+        title: 'translate:ycom_fast_forward.title'
+        perm: admin[]
+        block: ycom
+        icon: rex-icon fa-fast-forward
+        subpages:
+            settings:
+                title: 'translate:ycom_fast_forward.settings.title'
+                perm: admin[]
+                pjax: false
+                icon: rex-icon fa-cog
+            health:
+                title: 'translate:ycom_fast_forward.health.title'
+                perm: admin[]
+                pjax: false
+                icon: rex-icon fa-heartbeat
+            docs:
+                title: 'translate:ycom_fast_forward.docs.title'
+                perm: admin[]
+                pjax: false
+                itemClass: pull-right
+                icon: rex-icon fa-info-circle
+            terms_of_use:
+                title: 'translate:ycom_fast_forward.terms_of_use.title'
+                perm: admin[]
+                pjax: false
+                itemClass: pull-right text-white
+                icon: rex-icon fa-file-alt

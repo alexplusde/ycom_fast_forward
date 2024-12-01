@@ -2,6 +2,7 @@
 
 ycom_fast_forward.title = YCom Fast Forward
 ycom_fast_forward.docs.title = Dokumentation
+ycom_fast_forward.health.title = Status-Übersicht
 
 # Module
 
@@ -56,3 +57,7 @@ ycom_lastname = Nachname
 # Validierungen
 
 ycom_fast_forward.ycom_user.validate.pwned.error = Wir nehmen Sicherheit ernst. Das Passwort wurde in einer öffentlichen Datenbank mit bereits gehackten Passwörtern gefunden. Bitte wählen Sie ein anderes und sicheres Passwort.
+
+# Health-Status
+
+ycom_fast_forward.health.section.title = Statusbericht YCom-Benutzer-Datenbank
