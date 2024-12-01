@@ -38,3 +38,9 @@ page:
             pjax: false
             itemClass: pull-right
             icon: rex-icon fa-info-circle
+        terms_of_use:
+            title: 'translate:ycom_fast_forward.terms_of_use.title'
+            perm: admin[]
+            pjax: false
+            itemClass: pull-right text-white
+            icon: rex-icon fa-file-alt
