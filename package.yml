@@ -3,7 +3,6 @@ version: 1.0.0-dev-2024-12-01
 author: Alexander Walther
 supportpage: https://github.com/alexplusde/ycom_fast_forward
 
-# Benötigt `ycom`
 requires:
     php: '>=8.3'
     packages:
