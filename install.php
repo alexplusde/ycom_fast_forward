@@ -67,7 +67,17 @@ $module_id = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefi
 /* Modul-ID als Addon-Property speichern */
 $addon->setProperty('module_id', $module_id);
 
-rex_category_service::addCategory(0, [
+/* Root-Kategorie anhand Startartikel ermitteln */
+$siteStartArticleId = rex_article::getSiteStartArticleId();
+$siteStartCategory = rex_category::get($siteStartArticleId);
+
+$root_id = 0;
+if($siteStartCategory !== null) {
+    $root_id = $siteStartCategory->getId();
+}
+
+
+rex_category_service::addCategory($root_id, [
     'catname' => 'Login',
     'catpriority' => 1,
     'templateId' => null,
@@ -114,7 +124,7 @@ if ($category_login !== null) {
     ]);
 }
 
-rex_category_service::addCategory(0, [
+rex_category_service::addCategory($root_id, [
     'catname' => 'Mein Profil',
     'catpriority' => 2,
     'templateId' => null,
@@ -160,7 +170,7 @@ if ($category_myprofile !== null) {
     ]);
 }
 
-rex_category_service::addCategory(0, [
+rex_category_service::addCategory($root_id, [
     'catname' => 'Logout',
     'catpriority' => 3,
     'templateId' => null,
