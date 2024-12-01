@@ -67,8 +67,6 @@ $module_id = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefi
 /* Modul-ID als Addon-Property speichern */
 $addon->setProperty('module_id', $module_id);
 
-
-// TODO: Attribut ycom_auth_type = `2` für nicht eingeloggte Nutzer
 rex_category_service::addCategory(0, [
     'catname' => 'Login',
     'catpriority' => 1,
@@ -81,6 +79,10 @@ $category_login = rex_category::get(rex_addon::get('ycom_fast_forward')->getProp
 
 if ($category_login !== null) {
 
+    YComFastForward::setYcomAuthForArticle($category_login->getId(), 2);
+
+    $clang_id = $category_login->getClangId();
+    
     // Passwort vergessen
     rex_article_service::addArticle([
         'name' => 'Passwort vergessen',
@@ -88,6 +90,7 @@ if ($category_login !== null) {
         'priority' => 1,
         'template_id' => 0,
         'status' => 1,
+        'clang_id' => $clang_id
     ]);
 
     // OTP-Verifizierung
@@ -97,6 +100,7 @@ if ($category_login !== null) {
         'priority' => 2,
         'template_id' => 0,
         'status' => 1,
+        'clang_id' => $clang_id
     ]);
 
     // Registrierung
@@ -106,10 +110,10 @@ if ($category_login !== null) {
         'priority' => 3,
         'template_id' => 0,
         'status' => 1,
+        'clang_id' => $clang_id
     ]);
 }
 
-// TODO: Attribut ycom_auth_type = `1` für eingeloggte Nutzer
 rex_category_service::addCategory(0, [
     'catname' => 'Mein Profil',
     'catpriority' => 2,
@@ -122,6 +126,10 @@ $category_myprofile = rex_category::get(rex_addon::get('ycom_fast_forward')->get
 
 if ($category_myprofile !== null) {
 
+    YComFastForward::setYcomAuthForArticle($category_myprofile->getId(), 1);
+
+    $clang_id = $category_myprofile->getClangId();
+
     // Nutzungsbedingungen
     rex_article_service::addArticle([
         'category_id' => $category_myprofile->getId(),
@@ -129,6 +137,7 @@ if ($category_myprofile !== null) {
         'priority' => 1,
         'template_id' => 0,
         'status' => 1,
+        'clang_id' => $clang_id
     ]);
     // Profil bearbeiten
     rex_article_service::addArticle([
@@ -137,6 +146,7 @@ if ($category_myprofile !== null) {
         'priority' => 2,
         'template_id' => 0,
         'status' => 1,
+        'clang_id' => $clang_id
     ]);
 
     // Passwort ändern
@@ -146,10 +156,10 @@ if ($category_myprofile !== null) {
         'priority' => 3,
         'template_id' => 0,
         'status' => 1,
+        'clang_id' => $clang_id
     ]);
 }
 
-// TODO: Attribut ycom_auth_type = `1` für eingeloggte Nutzer
 rex_category_service::addCategory(0, [
     'catname' => 'Logout',
     'catpriority' => 3,
@@ -157,6 +167,25 @@ rex_category_service::addCategory(0, [
     'name' => 'Logout',
     'status' => 1,
 ]);
+
+$category_logout = rex_category::get(rex_addon::get('ycom_fast_forward')->getProperty('category_id_logout'));
+
+if ($category_logout !== null) {
+
+    YComFastForward::setYcomAuthForArticle($category_logout->getId(), 1);
+
+    $clang_id = $category_logout->getClangId();
+
+    // Logout
+    rex_article_service::addArticle([
+        'category_id' => $category_logout->getId(),
+        'name' => 'Logout',
+        'priority' => 1,
+        'template_id' => 0,
+        'status' => 1,
+        'clang_id' => $clang_id
+    ]);
+}
 
 // Prüfe, ob Feld `rex_ycom_user`.`lastname` existiert
 
