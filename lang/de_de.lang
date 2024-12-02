@@ -4,6 +4,7 @@ ycom_fast_forward.title = YCom Fast Forward
 ycom_fast_forward.docs.title = Dokumentation
 ycom_fast_forward.health.title = Status-Übersicht
 ycom_fast_forward.activation_key.title = Aktivierungsschlüssel
+
 # Module
 
 ycom_fast_forward.module.title = Überschrift
