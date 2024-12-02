@@ -22,7 +22,7 @@ default_config:
     password_rules: '{"length":{"min":10},"letter":{"min":1},"lowercase":{"min":0},"uppercase":{"min":0},"digit":{"min":1},"symbol":{"min":0}}'
 
 pages:
-    ycom/ycom_fast_forward:
+    ycom/fast_forward:
         title: 'translate:ycom_fast_forward.title'
         perm: admin[]
         block: ycom
@@ -50,3 +50,8 @@ pages:
                 pjax: false
                 itemClass: pull-right text-white
                 icon: rex-icon fa-file-alt
+    ycom/fast_forward_activation_key:
+        title: 'translate:ycom_fast_forward.activation_key.title'
+        perm: admin[]
+        block: ycom
+        icon: rex-icon fa-key
