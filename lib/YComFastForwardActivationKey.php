@@ -9,11 +9,14 @@ use rex_yform_manager_dataset;
 
 class ActivationKey extends rex_yform_manager_dataset
 {
+    const STATUS_EXPIRED = -1;
+    const STATUS_USED = 0;
+    const STATUS_ACTIVE = 1;
 
     private static $status = [
-        -1 => 'translate:rex_ycom_fast_forward_activation_key.status.expired',
-        0 => 'translate:rex_ycom_fast_forward_activation_key.status.used',
-        1 => 'translate:rex_ycom_fast_forward_activation_key.status.active',
+        SELF::STATUS_EXPIRED => 'translate:rex_ycom_fast_forward_activation_key.status.expired',
+        SELF::STATUS_USED => 'translate:rex_ycom_fast_forward_activation_key.status.used',
+        SELF::STATUS_ACTIVE => 'translate:rex_ycom_fast_forward_activation_key.status.active',
     ];
 
     public static function getStatusAsChoiceArray() :array
@@ -73,19 +76,19 @@ class ActivationKey extends rex_yform_manager_dataset
 
     public function setStatusActive() :bool
     {
-        $this->setValue('status', 1);
+        $this->setValue('status', SELF::STATUS_ACTIVE);
         return($this->save());
     }
 
     public function setStatusUsed() :bool
     {
-        $this->setValue('status', 0);
+        $this->setStatus(SELF::STATUS_USED);
         return($this->save());
     }
 
     public function setStatusExpired() :bool
     {
-        $this->setValue('status', -1);
+        $this->setStatus(SELF::STATUS_EXPIRED);
         return($this->save());
     }
 
@@ -173,6 +176,8 @@ class ActivationKey extends rex_yform_manager_dataset
         $ycom_user = $this->getYComUser();
         if($this->isActive() && $ycom_user) {
             if(\rex_ycom_auth::loginWithParams(['login' => $ycom_user->getId()]) !== false) {
+                // Key invalidieren
+                $this->setStatusUsed();
                 // redirect zur Zielseite von YCom
                 \rex_redirect(rex_getUrl(YComFastForward::getYComAuthConfig('article_id_login')));
                 exit;
