@@ -232,3 +232,6 @@ if (rex_ycom_user::query()->where('email', 'mail@example.org')->findOne() === nu
 
 // E-Mail-Templates anlegen
 include_once(__DIR__ . '/install/yform_email_template.php');
+
+// Table Manager Profil für ycom_fast_forward_activation_key anlegen
+include_once(__DIR__ . '/install/ycom_fast_forward_activation_key.php');

@@ -1,6 +1,6 @@
 <?php
 
-echo rex_view::title('YCom Fast Forward');
+echo rex_view::title(rex_i18n::msg('ycom_fast_forward.title'));
 
 $file = rex_file::get($this->getPath('README.md'));
 

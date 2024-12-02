@@ -3,6 +3,7 @@
 ycom_fast_forward.title = YCom Fast Forward
 ycom_fast_forward.docs.title = Dokumentation
 ycom_fast_forward.health.title = Status-Übersicht
+ycom_fast_forward.activation_key.title = Aktivierungsschlüssel
 
 # Module
 
@@ -59,6 +60,32 @@ ycom_fast_forward.terms_of_use.section.title = Einwilligung für Nutzungsbedingu
 # Table Manager
 
 ycom_lastname = Nachname
+rex_ycom_fast_forward_activation_key.table = Aktivierungsschlüssel
+rex_ycom_fast_forward_activation_key.table_description = 🧩 YCom Fast Forward -eine Tabelle, die es ermöglicht, bei YCom-Benutzern mehr als einen Activation Key hinzufügen zu können und diesen zeitlich zu befristen.
+
+rex_ycom_fast_forward_activation_key.ycom_user_id = YCom-User
+rex_ycom_fast_forward_activation_key.ycom_user_id.validate = Bitte wählen Sie einen YCom-Benutzer aus
+
+rex_ycom_fast_forward_activation_key.activation_key = Aktivierungsschlüssel
+
+rex_ycom_fast_forward_activation_key.activation_key.validate.unique = Der Aktivierungsschlüssel muss eindeutig sein
+
+rex_ycom_fast_forward_activation_key.status = Status
+rex_ycom_fast_forward_activation_key.status.expired = ⭕ Abgelaufen
+rex_ycom_fast_forward_activation_key.status.used = 🔴 Verwendet
+rex_ycom_fast_forward_activation_key.status.active = 🟢 Aktiv
+
+
+rex_ycom_fast_forward_activation_key.createdate = Erstellt am...
+rex_ycom_fast_forward_activation_key.createdate.validation.empty = Das Erstell-Datum darf nicht leer sein.
+rex_ycom_fast_forward_activation_key.expiredate = Gültig bis...
+rex_ycom_fast_forward_activation_key.expiredate.validation.empty = Das Ablaufdatum darf nicht leer sein.
+rex_ycom_fast_forward_activation_key.updatedate = Zuletzt geändert am...
+rex_ycom_fast_forward_activation_key.updatedate.validation.empty = Das Änderungsdatum darf nicht leer sein.
+rex_ycom_fast_forward_activation_key.deletedate = Wird gelöscht am...
+rex_ycom_fast_forward_activation_key.deletedate.validation.empty = Das Löschdatum darf nicht leer sein.
+
+rex_ycom_fast_forward_activation_key.comment = Notiz
 
 # Validierungen
 
