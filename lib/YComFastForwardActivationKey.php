@@ -34,10 +34,16 @@ class ActivationKey extends rex_yform_manager_dataset
         return self::query()->where('user_id', $userId)->find();
     }
 
-    public static function new(int $userId = null) :self
+    public static function new(int $userId) :self
     {
-        $activationKey = new self();
-        $activationKey->setValue('user_id', $userId);
+        $activationKey = self::create();
+        $activationKey->setValue('ycom_user_id', $userId);
+        $activationKey->setActivationKey(\bin2hex(\random_bytes(64)));
+        $activationKey->setStatusActive();
+        $activationKey->setCreatedate((new \DateTime())->format('Y-m-d H:i:s'));
+        $activationKey->setUpdatedate((new \DateTime())->format('Y-m-d H:i:s'));
+        $activationKey->setExpiredate((new \DateTime('+1 week'))->format('Y-m-d H:i:s'));
+        $activationKey->setDeletedate((new \DateTime('+1 month'))->format('Y-m-d H:i:s'));
         if($activationKey->save()) {
             return $activationKey;
         }
@@ -171,7 +177,7 @@ class ActivationKey extends rex_yform_manager_dataset
     }
 
     /* Login as YCom User if Activation Key is valid and Key is not expired */
-    public function login() : bool
+    public function login(bool $redirect = false) : bool
     {
         $ycom_user = $this->getYComUser();
         if($this->isActive() && $ycom_user) {
@@ -179,11 +185,24 @@ class ActivationKey extends rex_yform_manager_dataset
                 // Key invalidieren
                 $this->setStatusUsed();
                 // redirect zur Zielseite von YCom
-                \rex_redirect(rex_getUrl(YComFastForward::getYComAuthConfig('article_id_login')));
-                exit;
+                if($redirect) {
+                    \rex_redirect(rex_getUrl(YComFastForward::getYComAuthConfig('article_id_login')));
+                    exit;
+                }
+                return true;
             }
         }
         return false;
+    }
+
+    public function createTokenPerDomain() {
+        $domains = \rex_yrewrite::getDomains();
+        foreach ($domains as $domain) {
+            // Token erzeugen
+            $token = ActivationKey::new($this->getId());
+            $token->setComment('Multi-Domain Temporary Access Token for ' . $domain->getName());
+            $token->save();
+        }
     }
 
 }

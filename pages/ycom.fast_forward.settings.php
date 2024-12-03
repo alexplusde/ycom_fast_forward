@@ -123,6 +123,16 @@ $field = $form->addTextField('editor', null, ['class' => 'form-control']);
 $field->setLabel(rex_i18n::msg('ycom_fast_forward.config.editor'));
 $field->setNotice(rex_i18n::msg('ycom_fast_forward.config.editor.notice'));
 
+/* Fieldset für Multi-Access */
+
+$field = $form->addSelectField('enable_multidomain', null, ['class' => 'form-control']);
+$field->setLabel(rex_i18n::msg('ycom_fast_forward.config.enable_multidomain'));
+$field->setNotice(rex_i18n::msg('ycom_fast_forward.config.enable_multidomain.notice'));
+
+$select = $field->getSelect();
+$select->setSize(1);
+$select->addOption(rex_i18n::msg('ycom_fast_forward.config.enable_multidomain.no'), '0');
+$select->addOption(rex_i18n::msg('ycom_fast_forward.config.enable_multidomain.yes'), '1');
 
 // Formular ausgeben mit Core Section Fragment */
 
