@@ -2,7 +2,7 @@
 
 namespace Alexplusde\YComFastForward\Api;
 
-use Alexplusde\YComFastForward\ActivationKey;
+use Alexplusde\YComFastForward\LoginToken;
 
 use rex_api_function;
 use rex_response;
@@ -22,7 +22,7 @@ class MultiLogin extends rex_api_function
             $domains = rex_yrewrite::getDomains();
             $response = [];
             foreach ($domains as $domain) {
-                $response[$domain] = ActivationKey::new($ycom_user->getId());
+                $response[$domain] = LoginToken::new($ycom_user->getId());
             }
             rex_response::setStatus(rex_response::HTTP_OK);
             echo json_encode($response);
@@ -45,7 +45,7 @@ class MultiLogin extends rex_api_function
             exit;
         }
 
-        $activationKey = ActivationKey::findByKey($token);
+        $activationKey = LoginToken::findByKey($token);
 
         if (!$activationKey || !$activationKey->isActive()) {
             rex_response::setStatus(rex_response::HTTP_FORBIDDEN);

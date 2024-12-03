@@ -1,5 +1,4 @@
 <?php
-/* YForm Model: YComFastForwardActivationKey */
 
 namespace Alexplusde\YComFastForward;
 
@@ -7,16 +6,16 @@ use rex_ycom_user;
 use rex_yform_manager_collection;
 use rex_yform_manager_dataset;
 
-class ActivationKey extends rex_yform_manager_dataset
+class LoginToken extends rex_yform_manager_dataset
 {
     const STATUS_EXPIRED = -1;
     const STATUS_USED = 0;
     const STATUS_ACTIVE = 1;
 
     private static $status = [
-        SELF::STATUS_EXPIRED => 'translate:rex_ycom_fast_forward_activation_key.status.expired',
-        SELF::STATUS_USED => 'translate:rex_ycom_fast_forward_activation_key.status.used',
-        SELF::STATUS_ACTIVE => 'translate:rex_ycom_fast_forward_activation_key.status.active',
+        SELF::STATUS_EXPIRED => 'translate:rex_ycom_fast_forward_login_token.status.expired',
+        SELF::STATUS_USED => 'translate:rex_ycom_fast_forward_login_token.status.used',
+        SELF::STATUS_ACTIVE => 'translate:rex_ycom_fast_forward_login_token.status.active',
     ];
 
     public static function getStatusAsChoiceArray() :array
@@ -36,16 +35,16 @@ class ActivationKey extends rex_yform_manager_dataset
 
     public static function new(int $userId) :self
     {
-        $activationKey = self::create();
-        $activationKey->setValue('ycom_user_id', $userId);
-        $activationKey->setActivationKey(\bin2hex(\random_bytes(64)));
-        $activationKey->setStatusActive();
-        $activationKey->setCreatedate((new \DateTime())->format('Y-m-d H:i:s'));
-        $activationKey->setUpdatedate((new \DateTime())->format('Y-m-d H:i:s'));
-        $activationKey->setExpiredate((new \DateTime('+1 week'))->format('Y-m-d H:i:s'));
-        $activationKey->setDeletedate((new \DateTime('+1 month'))->format('Y-m-d H:i:s'));
-        if($activationKey->save()) {
-            return $activationKey;
+        $loginToken = self::create();
+        $loginToken->setValue('ycom_user_id', $userId);
+        $loginToken->setLoginToken(\bin2hex(\random_bytes(64)));
+        $loginToken->setStatusActive();
+        $loginToken->setCreatedate((new \DateTime())->format('Y-m-d H:i:s'));
+        $loginToken->setUpdatedate((new \DateTime())->format('Y-m-d H:i:s'));
+        $loginToken->setExpiredate((new \DateTime('+1 week'))->format('Y-m-d H:i:s'));
+        $loginToken->setDeletedate((new \DateTime('+1 month'))->format('Y-m-d H:i:s'));
+        if($loginToken->save()) {
+            return $loginToken;
         }
         return null;
     }
@@ -112,11 +111,11 @@ class ActivationKey extends rex_yform_manager_dataset
 
     /* Aktivierungsschlüssel */
     /** @api */
-    public function getActivationKey() : string {
+    public function getLoginToken() : string {
         return $this->getValue("activation_key");
     }
     /** @api */
-    public function setActivationKey(mixed $value) : self {
+    public function setLoginToken(mixed $value) : self {
         $this->setValue("activation_key", $value);
         return $this;
     }
@@ -176,7 +175,7 @@ class ActivationKey extends rex_yform_manager_dataset
         return $this;
     }
 
-    /* Login as YCom User if Activation Key is valid and Key is not expired */
+    /* Login as YCom User if Login Token is valid and Key is not expired */
     public function login(bool $redirect = false) : bool
     {
         $ycom_user = $this->getYComUser();
@@ -204,7 +203,7 @@ class ActivationKey extends rex_yform_manager_dataset
 
         foreach ($domains as $domain) {
             // Token erzeugen
-            $token = ActivationKey::new($user_id);
+            $token = LoginToken::new($user_id);
             $token->setComment('Multi-Domain Temporary Access Token for ' . $domain->getName());
             return $token->save();
         }

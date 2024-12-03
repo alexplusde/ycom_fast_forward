@@ -50,8 +50,8 @@ pages:
                 pjax: false
                 itemClass: pull-right text-white
                 icon: rex-icon fa-file-alt
-    ycom/fast_forward_activation_key:
-        title: 'translate:ycom_fast_forward.activation_key.title'
+    ycom/fast_forward_login_token:
+        title: 'translate:ycom_fast_forward.login_token.title'
         perm: admin[]
         block: ycom
         icon: rex-icon fa-key

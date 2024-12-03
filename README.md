@@ -120,47 +120,47 @@ Weitere nützliche Prüfungen sind gerne gesehen und willkommen.
 
 ![blaupause test_redaxo_index php_page=ycom_ycom_fast_forward_health (1)](https://github.com/user-attachments/assets/494efba7-a231-4fd1-8659-a0b3a33acc75)
 
-## Aktivierungsschlüssel-Management
+## Login-Token-Management
 
 YCom kennnt standardmäßig den Activation Key, um sich direkt einloggen zu können. Diese Funktion kann hilfreich sein, um einen direkten Login per Mail zu ermöglichen, ohne dass der Benutzer ein Passwort eingeben muss.
 
 Allerdings kann YCom nicht mehr als einen Activation Key speichern. Auch werden die Aktivierungsschlüssel nach Verwendung nicht automatisch invalidiert.
 
-YCom Fast Forward bietet eine Möglichkeit, eigene Activation Keys zu verwalten. Es können beliebig viele Activation Keys erstellt und gelöscht werden. Nutzer sind nach der Verwendung des Activation Keys automatisch eingeloggt.
+YCom Fast Forward bietet eine Möglichkeit, eigene Login-Token zu verwalten. Es können beliebig viele Login-Token erstellt und gelöscht werden. Nutzer sind nach der Verwendung des Login-Token automatisch eingeloggt.
 
 ### Schlüssel erstellen
 
 ```php
 
-// Activation Key erstellen
+// Login-Token erstellen
 
-use Alexplusde\YComFastForward\ActivationKey;
+use Alexplusde\YComFastForward\LoginToken;
 
-$activationKey = ActivationKey::create($userId);
+$loginToken = LoginToken::create($userId);
 ```
 
 ### Nutzer einloggen
 
 ```php
 
-use Alexplusde\YComFastForward\ActivationKey;
+use Alexplusde\YComFastForward\LoginToken;
 
-$activationKey = ActivationKey::getByKey($key);
+$loginToken = LoginToken::getByKey($key);
 
-if ($activationKey) {
-    $activationKey->login(); // Leitet den Benutzer weiter zur definierten YCom-Seite
+if ($loginToken) {
+    $loginToken->login(); // Leitet den Benutzer weiter zur definierten YCom-Seite
 }
 ```
 
 ### Multi-Login (Konzeptionsphase)
 
-YCom Fast Forward bietet auch die Möglichkeit, mehrere Activation Keys für einen Benutzer zu erstellen, wenn dieser in mehreren Domains derselben REDAXO-Installation eingeloggt sein soll.
+YCom Fast Forward bietet auch die Möglichkeit, mehrere Login-Token für einen Benutzer zu erstellen, wenn dieser in mehreren Domains derselben REDAXO-Installation eingeloggt sein soll.
 
 Folgender Prozess wird dabei ausgelöst:
 
 1. Der Nutzer loggt sich erfolgreich auf Domain A ein.
-2. Nach erfolgreichem Login wird einmalig ein API-Aufruf per JavaScript ausgelöst, der einen Activation Key für Domain B bis X erstellt.
-3. Das JavaScript ruft die API auf Domain B bis X auf und verwendet dabei die generierten Activation Keys.
+2. Nach erfolgreichem Login wird einmalig ein API-Aufruf per JavaScript ausgelöst, der einen Login-Token für Domain B bis X erstellt.
+3. Das JavaScript ruft die API auf Domain B bis X auf und verwendet dabei die generierten Login-Token.
 4. Der Nutzer wird dadurch auf Domain B bis X eingeloggt, ohne ein Passwort eingeben zu müssen.
 
 To-Do: Ein Logout auf einer beliebigen Domain soll ebenfalls alle anderen Domains ausloggen.
