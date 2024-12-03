@@ -195,13 +195,18 @@ class ActivationKey extends rex_yform_manager_dataset
         return false;
     }
 
-    public function createTokenPerDomain() {
+    public static function createTokenPerDomain(int $user_id) :bool {
         $domains = \rex_yrewrite::getDomains();
+
+        if(rex_ycom_user::get($user_id) === null) {
+            return false;
+        }
+
         foreach ($domains as $domain) {
             // Token erzeugen
-            $token = ActivationKey::new($this->getId());
+            $token = ActivationKey::new($user_id);
             $token->setComment('Multi-Domain Temporary Access Token for ' . $domain->getName());
-            $token->save();
+            return $token->save();
         }
     }
 
