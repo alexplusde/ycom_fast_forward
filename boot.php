@@ -1,7 +1,7 @@
 <?php
 
 use Alexplusde\YComFastForward\ActivationKey;
-
+use Alexplusde\YComFastForward\Api\MultiLogin;
 /** @var rex_addon $this */
 
 if (rex::isBackend()) {
@@ -21,3 +21,5 @@ if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
 		ActivationKey::class, // Hier anpassen, falls Namespace verwendet wird
 	);
 }
+
+rex_api_function::register('ycom_fast_forward_multi_login', MultiLogin::class);
