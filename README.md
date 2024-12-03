@@ -152,6 +152,19 @@ if ($activationKey) {
 }
 ```
 
+### Multi-Login (Konzeptionsphase)
+
+YCom Fast Forward bietet auch die Möglichkeit, mehrere Activation Keys für einen Benutzer zu erstellen, wenn dieser in mehreren Domains derselben REDAXO-Installation eingeloggt sein soll.
+
+Folgender Prozess wird dabei ausgelöst:
+
+1. Der Nutzer loggt sich erfolgreich auf Domain A ein.
+2. Nach erfolgreichem Login wird einmalig ein API-Aufruf per JavaScript ausgelöst, der einen Activation Key für Domain B bis X erstellt.
+3. Das JavaScript ruft die API auf Domain B bis X auf und verwendet dabei die generierten Activation Keys.
+4. Der Nutzer wird dadurch auf Domain B bis X eingeloggt, ohne ein Passwort eingeben zu müssen.
+
+To-Do: Ein Logout auf einer beliebigen Domain soll ebenfalls alle anderen Domains ausloggen.
+
 ## Autor
 
 [Alexander Walther](https://github.com/alexplusde)
