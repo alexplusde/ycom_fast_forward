@@ -33,6 +33,11 @@ pages:
                 perm: admin[]
                 pjax: false
                 icon: rex-icon fa-cog
+            profile:
+                title: 'translate:ycom_fast_forward.profile.title'
+                perm: admin[]
+                pjax: false
+                icon: rex-icon fa-cog
             health:
                 title: 'translate:ycom_fast_forward.health.title'
                 perm: admin[]

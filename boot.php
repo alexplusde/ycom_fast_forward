@@ -2,6 +2,8 @@
 
 use Alexplusde\YComFastForward\LoginToken;
 use Alexplusde\YComFastForward\Api\MultiLogin;
+use Alexplusde\YComFastForward\Profile;
+
 /** @var rex_addon $this */
 
 if (rex::isBackend()) {
@@ -16,10 +18,14 @@ if (rex::isBackend()) {
 }
 
 if (rex_addon::get('yform')->isAvailable() && !rex::isSafeMode()) {
-	rex_yform_manager_dataset::setModelClass(
-		'rex_ycom_fast_forward_activation_key',
-		LoginToken::class, // Hier anpassen, falls Namespace verwendet wird
-	);
+    rex_yform_manager_dataset::setModelClass(
+        'rex_ycom_fast_forward_activation_key',
+        LoginToken::class
+    );
+    rex_yform_manager_dataset::setModelClass(
+        'rex_ycom_fast_forward_profile',
+        Profile::class
+    );
 }
 
 rex_api_function::register('ycom_fast_forward_multi_login', MultiLogin::class);
