@@ -94,3 +94,24 @@ ycom_fast_forward.ycom_user.validate.pwned.error = Wir nehmen Sicherheit ernst. 
 # Health-Status
 
 ycom_fast_forward.health.section.title = Statusbericht YCom-Benutzer-Datenbank
+
+# Einstellungen je Domain
+
+ycom_fast_forward_profile = Einstellungen
+ycom_fast_forward_profile.yrewrite_domain_id = YRewrite Domain
+ycom_fast_forward_profile.article_id_login = Login-Seite
+ycom_fast_forward_profile.article_id_logout = Logout-Seite
+ycom_fast_forward_profile.article_id_jump_ok = Seite nach erfolgreicher Anmeldung
+ycom_fast_forward_profile.article_id_jump_logout = Seite nach Abmeldung
+ycom_fast_forward_profile.article_id_jump_denied = Seite bei Zugriffsverweigerung
+ycom_fast_forward_profile.article_id_password = Passwort vergessen
+
+ycom_fast_forward_profile.mailer_profile_id = Mailer-Profil
+
+ycom_fast_forward_profile.email_template_otp = E-Mail-Template für OTP
+ycom_fast_forward_profile.email_template_password = E-Mail-Template für Passwort
+
+ycom_fast_forward_profile.dashboard_article_id = Dashboard-Seite
+ycom_fast_forward_profile.resetpassword_article_id = Passwort zurücksetzen-Seite
+
+ycom_fast_forward.profile.title = Profile

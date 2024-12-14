@@ -24,7 +24,7 @@ $field->setNotice(rex_i18n::msg('ycom_fast_forward.config.ycom_user_default_stat
 $select = $field->getSelect();
 $select->setSize(1);
 
-$options = explode(",",'translate:ycom_account_inactive_termination=-3,translate:ycom_account_inactive_logins=-2,translate:ycom_account_inactive=-1,translate:ycom_account_requested=0,translate:ycom_account_confirm=1,translate:ycom_account_active=2');
+$options = explode(",", 'translate:ycom_account_inactive_termination=-3,translate:ycom_account_inactive_logins=-2,translate:ycom_account_inactive=-1,translate:ycom_account_requested=0,translate:ycom_account_confirm=1,translate:ycom_account_active=2');
 foreach ($options as $option) {
     $option = explode('=', $option);
     $label = substr($option[0], 10);
@@ -60,7 +60,7 @@ $field->getValidator()->add('custom', rex_i18n::msg('ycom_fast_forward.config.pa
     /* Überprüfen, ob JSON-Format */
     if (json_decode($value) === null) {
         return false;
-    } 
+    }
     return true;
 });
 

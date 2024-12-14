@@ -8,8 +8,8 @@ $addon = rex_addon::get('ycom_fast_forward');
 // Wenn Modul mit key "ycom_fast_forward" nicht existiert, dann Modul installieren
 $module = rex_sql::factory()->setQuery('SELECT id FROM ' . rex::getTablePrefix() . 'module WHERE `key` = "ycom_fast_forward"');
 
-$input = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/input.php'));
-$output = rex_file::get(rex_path::addon('ycom_fast_forward', 'install/module/output.php'));
+$input = rex_file::get(__DIR__. '/install/module/input.php');
+$output = rex_file::get(__DIR__. '/install/module/output.php');
 
 if ($module->getRows() === 0) {
 
@@ -72,7 +72,7 @@ $siteStartArticleId = rex_article::getSiteStartArticleId();
 $siteStartCategory = rex_category::get($siteStartArticleId);
 
 $root_id = 0;
-if($siteStartCategory !== null) {
+if ($siteStartCategory !== null) {
     $root_id = $siteStartCategory->getId();
 }
 
@@ -220,7 +220,7 @@ if (rex_yform_manager_table::get('rex_ycom_user')->getFields()['lastname'] === n
 
 \rex_yform_manager_table_api::generateTableAndFields(rex_yform_manager_table::get('rex_ycom_user'));
 
-// YCom-Nutzer anlegen
+// YCom- Dummy-Nutzer anlegen
 if (rex_ycom_user::query()->where('email', 'mail@example.org')->findOne() === null) {
     rex_ycom_user::createUserByEmail([
         'firstname' => 'Blue',
@@ -235,3 +235,6 @@ include_once(__DIR__ . '/install/yform_email_template.php');
 
 // Table Manager Profil für ycom_fast_forward_activation_key anlegen
 include_once(__DIR__ . '/install/ycom_fast_forward_activation_key.php');
+
+// Table Manager Profil für ycom_fast_forward_settings anlegen (Multi-Domain-Konfiguration)
+include_once(__DIR__ . '/install/ycom_fast_forward_settings.php');
