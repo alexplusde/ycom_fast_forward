@@ -17,6 +17,7 @@ if ($module->getRows() === 0) {
     rex_sql::factory()
         ->setTable(rex::getTablePrefix() . 'module')
         ->setValue('name', 'translate:ycom_fast_forward.module.name')
+        ->setValue('key', 'ycom_fast_forward')
         ->setValue('input', $input)
         ->setValue('output', $output)
         ->setValue('createuser', 'ycom_fast_forward')
